@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Club</title>
-</head>
-<body>
-    <h1>Add a new book</h1>
-    <form action="/books" method="POST">
-        <label for="title"></label>
-        <input type="text" name="title" id="title"
-        placeholder="title" required>
-        <label for="author"></label>
-        <input type="text" name="author" id="author"
-        placeholder="author" required>
-        <label for="dateStarted"></label>
-        <input type="date" name="dateStarted" id="dateStarted">
-        <label for="dateFinished"></label>
-        <input type="date" name="dateFinished" id="dateFinished" required>
-        <button>Add Book</button>
-    </form>
-</body>
-</html>
+<%layout('boilerplate')%>
+<h1>Add a new book</h1>
+<form action="/books" method="POST">
+    <label for="title"></label>
+    <input type="text" name="title" id="title"
+    placeholder="title" required>
+    <label for="author"></label>
+    <input type="text" name="author" id="author"
+    placeholder="author" required>
+    <label for="dateStarted"></label>
+    <input type="date" name="dateStarted" id="dateStarted">
+    <label for="dateFinished"></label>
+    <input type="date" name="dateFinished" id="dateFinished" required>
+    <button>Add Book</button>
+</form>

@@ -1,30 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Club</title>
-</head>
-<body>
-    <h1>EDIT</h1>
-    <form action="/books/<%=book._id%>?_method=PUT" method="POST">
-        <label for="title"></label>
-        <input type="text" name="title" id="title"
-        value="<%=book.title%>" required>
-        <label for="author"></label>
-        <input type="text" name="author" id="author"
-        value="<%=book.author%>" required>
-        <label for="dateStarted"></label>
-        <input type="date" name="dateStarted" id="dateStarted"
-        value="<%=book.dateStarted%>">
-        <label for="dateFinished"></label>
-        <input type="date" name="dateFinished" id="dateFinished"
-        value="<%=book.dateFinished%>" required>
-        <button>SAVE</button>
-    </form>
-    <form action="/books/<%=book._id%>?_method=DELETE" method="POST">
+<% layout('boilerplate')%>
+<h1>EDIT</h1>
+<form action="/books/<%=book._id%>?_method=PUT" method="POST">
+    <label for="title"></label>
+    <input type="text" name="title" id="title"
+    value="<%=book.title%>" required>
+    <label for="author"></label>
+    <input type="text" name="author" id="author"
+    value="<%=book.author%>" required>
+    <label for="dateStarted"></label>
+    <input type="date" name="dateStarted" id="dateStarted"
+    value="<%=book.dateStarted%>">
+    <label for="dateFinished"></label>
+    <input type="date" name="dateFinished" id="dateFinished"
+    value="<%=book.dateFinished%>" required>
+    <button>SAVE</button>
+</form>
+
+<form action="/books/<%=book._id%>?_method=DELETE" method="POST">
     <button>DELETE</button>
-    </form>
-</body>
-</html>
+</form>
