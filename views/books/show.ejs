@@ -8,5 +8,11 @@
 </head>
 <body>
     <h1>Show Page</h1>
+    <a href="/books">Home</a>
+    <h2>Title: <%=book.title%></h2>
+    <h2>Author: <%=book.author%></h2>
+    <h2>Started: <%=book.dateStarted%></h2>
+    <h2>Finished: <%=book.dateFinished%></h2>
+    <a href="/books/<%=book._id%>/edit">Edit</a>
 </body>
 </html>
