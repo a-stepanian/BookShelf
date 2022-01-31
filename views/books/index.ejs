@@ -1,8 +1,6 @@
 <% layout('boilerplate')%>
-<h1>index</h1>
-<% for (let book of books) { %>
-    <a href="/books/<%=book._id%>"><%=book.title%></a>
-<% } %>
-<footer>
+    <h1>Book List</h1>
+    <% for(let book of books) { %>
+        <a class="card" href="/books/<%=book._id%>"><%=book.title%></a>
+    <% } %>
     <a href="books/new">Add New Book</a>
-</footer>    

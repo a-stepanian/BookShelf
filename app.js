@@ -43,6 +43,8 @@ app.post('/books', async (req, res) => {
 });
 app.get('/books/:id', async (req, res) => {
     const book = await Book.findById(req.params.id)
+    console.log(book)
+    console.log(book.dateStarted)
     res.render('books/show', { book });
 });
 app.get('/books/:id/edit', async (req, res) => {
