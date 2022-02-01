@@ -1,6 +1,36 @@
-<% layout('boilerplate')%>
-    <h1>Book List</h1>
-    <% for(let book of books) { %>
-        <a class="card" href="/books/<%=book._id%>"><%=book.title%></a>
-    <% } %>
-    <a href="books/new">Add New Book</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookShelf</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;1,400;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="books/new">Add A Book</a>
+        <a href="#">Sign Up</a>
+        <a href="#">Log In</a>
+    </nav>
+
+    <main>
+        <div class="contentBox">
+            <p>Placeholder for book image</p>
+        </div>
+        <div class="contentBox">
+            <p>Placeholder for book details</p>
+        </div>
+    </main>
+    <h2>Your Bookshelf</h2>
+    <footer class="bookshelf">
+        <% for(let book of books) { %>
+            <div class="book">
+                <a href="/books/<%=book._id%>"><%=book.title%></a>
+            </div>
+        <% } %>
+    </footer>
+</body>
+</html>

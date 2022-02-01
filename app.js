@@ -31,6 +31,7 @@ app.get('/', (req, res) => {
 });
 app.get('/books', async (req, res) => {
     const books = await Book.find();
+    console.log(books)
     res.render('books/index', { books });
 });
 app.get('/books/new', (req, res) => {
