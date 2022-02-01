@@ -5,7 +5,7 @@
 }
 body {
     height: 100vh;
-    background: rgb(0, 0, 0);
+    background: #252422;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,20 +13,24 @@ body {
 }
 nav {
     width: 100%;
-    background-color: rgba(73, 0, 0, 0.5);
+    background-color: #eb5e28;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 nav a {
     margin: 5px;
-    border-radius: 5px;
-    color: white;
+    border-radius: 3px;
+    border: 3px solid #252422;
+    color: #252422;
     text-decoration: none;
     text-align: center;
     line-height: 2em;
-    width: 100px;
-    background-color: rgba(150, 0, 0, 0.5);
+    width: 120px;
+    font-size: 1.2em;
+    letter-spacing: -1.5px;
+    font-weight: 900;
+    background-color: #ccc5b9;
 }
 nav a:hover {
     text-decoration: underline;
@@ -54,36 +58,36 @@ main {
 }
 footer {
     width: 100%;
-    height: 400px;
+    height: 300px;
     display: flex;
     flex-direction: column;
 }
 h2 {
-    color: white;
+    color: #eb5e28;
     height: 50px;
     font-size: 2.5em;
 }
 .bookshelf {
     width: 100%;
-    height: 350px;
+    height: 250px;
     display: flex;
     align-items:flex-end;
     overflow-y: hidden;
     overflow-x: scroll;
 }
 .bookContainer {
-    width: 80px;
-    height: 300px;
+    width: 60px;
+    height: 200px;
     transition: 0.3s;
 }
 .bookContainer:hover {
-    width: 180px;
-    height: 320px;
+    width: 120px;
+    height: 220px;
 }
 .book {
-    background-color: white;
+    background-color: #fffcf2;
     height: 100%;
     border-radius: 5px;
-    border: 5px solid white;
-    outline: 3px solid rgba(0, 0, 0, 0.3);
+    border: 5px solid #fffcf2;
+    outline: 3px solid #252422;
 }
