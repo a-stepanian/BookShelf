@@ -1,16 +1,48 @@
-<%layout('boilerplate')%>
-<h1>Add a new book</h1>
-<form action="/books" method="POST">
-    <label for="bookTitle">Title</label>
-    <input type="text" name="bookTitle" id="bookTitle"
-    placeholder="Title" required autofocus>
-    <label for="format">Format</label>
-    <select name="format" id="format">
-        <option value="book">Book / E-Reader</option>
-        <option value="audiobook">Audiobook</option>
-    </select>
-    <input type="date" name="dateStarted" id="dateStarted">
-    <label for="dateFinished"></label>
-    <input type="date" name="dateFinished" id="dateFinished">
-    <button>Add Book</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookShelf</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;1,400;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/new.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="books/new">Add a Book</a>
+        <a href="#">Sign Up</a>
+        <a href="#">Log In</a>
+    </nav>
+
+    <main>
+        <h1>Add a Book!</h1>
+        <form action="/books" method="POST">
+            <label for="bookTitle">Title: </label>
+            <input type="text" name="bookTitle" id="bookTitle"
+            placeholder="Title" required autofocus>
+            <label for="format">Format: </label>
+            <select name="format" id="format">
+                <option value="book">Book / E-Reader</option>
+                <option value="audiobook">Audiobook</option>
+            </select>
+            <label for="dateStarted">Start Date: </label>
+            <input type="date" name="dateStarted" id="dateStarted">
+            <label for="dateFinished">Finish Date: </label>
+            <input type="date" name="dateFinished" id="dateFinished">
+            <div>
+                <button>Add Book</button> <a href="/books">Cancel</a>
+            </div>
+        </form>
+    </main>
+    <footer>
+    <h2>Your Bookshelf</h2>
+    <div class="bookshelf">
+        <% for(let book of books) { %>
+            <div class="bookContainer"><img class="book" src="<%=book.imageUrlM%>" alt=""></div>
+        <% } %>
+    </div>
+    </footer>
+</body>
+</html>

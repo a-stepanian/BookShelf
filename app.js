@@ -34,8 +34,9 @@ app.get('/books', async (req, res) => {
     const books = await Book.find();
     res.render('books/index', { books });
 });
-app.get('/books/new', (req, res) => {
-    res.render('books/new');
+app.get('/books/new', async (req, res) => {
+    const books = await Book.find();
+    res.render('books/new', { books });
 });
 app.post('/books', async (req, res) => {
     const { bookTitle, dateStarted, dateFinished } = req.body;
@@ -79,7 +80,7 @@ app.post('/books', async (req, res) => {
     const imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
     const book = new Book({title, author, pageCount, dateStarted, dateFinished, firstSentence, imageUrlM, imageUrlL});
     await book.save();
-    res.redirect(`/books/${book._id}`);
+    res.redirect('/books');
 });
 app.get('/books/:id', async (req, res) => {
     const book = await Book.findById(req.params.id)
