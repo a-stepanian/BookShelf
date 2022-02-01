@@ -6,25 +6,31 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Book Club | <%=book.title%></title>
+        <link rel="stylesheet" href="/stylesheets/show.css">
 </head>
 
 <body>
+    <header>
         <a href="/books">Home</a>
         <h1><%=book.title%></h1>
-        <h2><%=book.author%></h2>
-        <aside>
-                <img src="<%=book.imageUrlL%>" alt="">
-        </aside>
-        <main>
-        <h3>Page Count: <%=book.pageCount%></h3>
-        <% if (book.firstSentence) { %>
-        <p>"<%=book.firstSentence[0]%>.."</p>
-        <% } %>
-        <h5>Started on: <%=book.dateStarted%></h5>
-        <h5>Finished on: <%=book.dateFinished%></h5>
-
-        <a href="/books/<%=book._id%>/edit">Edit</a>
-        </main>
+        <h2>by <%=book.author%></h2>
+    </header>
+    <main>
+        <img src="<%=book.imageUrlL%>" alt="">
+        <section>
+                <h3>Page Count: <%=book.pageCount%></h3>
+                <% if (book.firstSentence.length) { %>
+                        <p>"<%=book.firstSentence[0]%>.."</p>
+                <% } %>
+                <% if (book.dateStarted) { %>
+                <h4>Started on: <%=book.dateStarted%></h4>
+                <% } %>
+                <% if (book.dateFinished) { %>
+                <h4>Finished on: <%=book.dateFinished%></h4>
+                <% } %>
+                <a href="/books/<%=book._id%>/edit">Edit</a>
+        </section>
+    </main>
 </body>
 
 </html>

@@ -40,16 +40,6 @@ app.get('/books/new', (req, res) => {
 app.post('/books', async (req, res) => {
     const { bookTitle, dateStarted, dateFinished } = req.body;
     const response = await axios.get(`http://openlibrary.org/search.json?q=${bookTitle}`);
-    console.log(response.data.docs[0].author_name[0])
-    console.log(response.data.docs[0].title)
-    console.log(response.data.docs[0].number_of_pages_median)
-    console.log(response.data.docs[0].first_sentence)
-    console.log(response.data.docs[0].cover_i)
-    console.log(response.data.docs[1].author_name[0])
-    console.log(response.data.docs[1].title)
-    console.log(response.data.docs[1].number_of_pages_median)
-    console.log(response.data.docs[1].first_sentence)
-    console.log(response.data.docs[1].cover_i)
     let author = "404";
     let title = "404";
     let pageCount = 404;
