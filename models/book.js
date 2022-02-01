@@ -4,6 +4,9 @@ const Schema = mongoose.Schema;
 const BookSchema = new Schema({
     title: String,
     author: String,
+    format: String,
+    pageCount: Number,
+    firstSentence: Array,
     dateStarted: Date,
     dateFinished: Date,
     imageUrlM: String,

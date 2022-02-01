@@ -4,6 +4,7 @@ const path = require('path');
 const methodOverride = require('method-override');
 const Book = require('./models/book');
 const ejsMate = require('ejs-mate');
+const axios = require('axios');
 
 // Connect to DB
 mongoose.connect('mongodb://localhost:27017/book-club')
@@ -31,16 +32,64 @@ app.get('/', (req, res) => {
 });
 app.get('/books', async (req, res) => {
     const books = await Book.find();
-    console.log(books)
     res.render('books/index', { books });
 });
 app.get('/books/new', (req, res) => {
     res.render('books/new');
 });
 app.post('/books', async (req, res) => {
-    const book = new Book(req.body);
+    const { bookTitle, dateStarted, dateFinished } = req.body;
+    const response = await axios.get(`http://openlibrary.org/search.json?q=${bookTitle}`);
+    console.log(response.data.docs[0].author_name[0])
+    console.log(response.data.docs[0].title)
+    console.log(response.data.docs[0].number_of_pages_median)
+    console.log(response.data.docs[0].first_sentence)
+    console.log(response.data.docs[0].cover_i)
+    console.log(response.data.docs[1].author_name[0])
+    console.log(response.data.docs[1].title)
+    console.log(response.data.docs[1].number_of_pages_median)
+    console.log(response.data.docs[1].first_sentence)
+    console.log(response.data.docs[1].cover_i)
+    let author = "404";
+    let title = "404";
+    let pageCount = 404;
+    let firstSentence = [];
+    let coverImageCode = 8406786;
+
+    if (response.data.docs[0].author_name) {
+        author = response.data.docs[0].author_name[0]
+    } else {
+        author = response.data.docs[1].author_name[0]
+    }
+
+    if (response.data.docs[0].title) {
+        title = response.data.docs[0].title
+    } else {
+        title = response.data.docs[1].title
+    }
+
+    if (response.data.docs[0].number_of_pages_median) {
+        pageCount = response.data.docs[0].number_of_pages_median;
+    } else {
+        pageCount = response.data.docs[1].number_of_pages_median;
+    }
+
+    if (response.data.docs[0].first_sentence) {
+        firstSentence = response.data.docs[0].first_sentence;
+    } else {
+        firstSentence = [];
+    }
+
+    if (response.data.docs[0].cover_i) {
+        coverImageCode = response.data.docs[0].cover_i
+    } else {
+        coverImageCode = response.data.docs[1].cover_i;
+    }
+    const imageUrlM = `https://covers.openlibrary.org/b/id/${coverImageCode}-M.jpg`;
+    const imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
+    const book = new Book({title, author, pageCount, dateStarted, dateFinished, firstSentence, imageUrlM, imageUrlL});
     await book.save();
-    res.redirect('/books');
+    res.redirect(`/books/${book._id}`);
 });
 app.get('/books/:id', async (req, res) => {
     const book = await Book.findById(req.params.id)
