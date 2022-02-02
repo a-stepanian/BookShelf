@@ -11,83 +11,15 @@ body {
     align-items: center;
     font-family: 'JetBrains Mono', monospace;
 }
-nav {
+main {
+    height: 100%;
     width: 100%;
-    background-color: #eb5e28;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-nav a {
-    margin: 5px;
-    border-radius: 3px;
-    border: 3px solid #252422;
-    color: #252422;
-    text-decoration: none;
-    text-align: center;
-    line-height: 2em;
-    width: 120px;
-    font-size: 1.2em;
-    letter-spacing: -1.5px;
-    font-weight: 900;
-    background-color: #ccc5b9;
-}
-nav a:hover {
-    text-decoration: underline;
-}
-main {
-    height: 100%;
-    width: 100%;
-    border: 1px solid black;
-    display: flex;
-}
-.logo {
-    width: 30%;
-    background-color: white;
-    border: 1px solid black;
-}
-.cover {
-    width: 40%;
-    background-color: white;
-    border: 1px solid black;
-}
-.details {
-    width: 30%;
-    background-color: white;
-    border: 1px solid black;
-}
-footer {
-    width: 100%;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-}
 h2 {
     color: #eb5e28;
     height: 50px;
-    font-size: 2.5em;
-}
-.bookshelf {
-    width: 100%;
-    height: 250px;
-    display: flex;
-    align-items:flex-end;
-    overflow-y: hidden;
-    overflow-x: scroll;
-}
-.bookContainer {
-    width: 60px;
-    height: 200px;
-    transition: 0.3s;
-}
-.bookContainer:hover {
-    width: 120px;
-    height: 220px;
-}
-.book {
-    background-color: #fffcf2;
-    height: 100%;
-    border-radius: 5px;
-    border: 5px solid #fffcf2;
-    outline: 3px solid #252422;
+    font-size: 3em;
 }
