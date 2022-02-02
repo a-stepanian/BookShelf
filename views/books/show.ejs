@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Book Club | <%=book.title%></title>
-        <link rel="stylesheet" href="/stylesheets/show.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookShelf</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;1,400;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/show.css">
 </head>
-
 <body>
-    <header>
-        <a href="/books">Home</a>
-        <h1><%=book.title%></h1>
-        <h2>by <%=book.author%></h2>
-    </header>
-    <main>
-        <img src="<%=book.imageUrlL%>" alt="">
-        <section>
-                <h3>Page Count: <%=book.pageCount%></h3>
-                <% if (book.firstSentence.length) { %>
-                        <p>"<%=book.firstSentence[0]%>.."</p>
-                <% } %>
-                <% if (book.dateStarted) { %>
-                <h4>Started on: <%=book.dateStarted%></h4>
-                <% } %>
-                <% if (book.dateFinished) { %>
-                <h4>Finished on: <%=book.dateFinished%></h4>
-                <% } %>
-                <a href="/books/<%=book._id%>/edit">Edit</a>
-        </section>
-    </main>
-</body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/books/new">Add a Book</a>
+        <a href="#">Sign Up</a>
+        <a href="#">Log In</a>
+    </nav>
 
+    <main>
+        <div class="logo">
+            <h1>BookShelf</h1>
+        </div>
+        <div class="cover">
+            <img src="<%=book.imageUrlL%>" alt="">
+        </div>
+        <div class="details">
+            <h2><%=book.title%></h1>
+            <h3>by <%=book.author%></h3>
+            <h3>Page Count: <%=book.pageCount%></h3>
+            <% if (book.firstSentence.length) { %>
+                <p>"<%=book.firstSentence[0]%>.."</p>
+            <% } %>
+            <% if (book.dateStarted) { %>
+                <h4>Started on: <%=book.dateStarted%></h4>
+            <% } %>
+            <% if (book.dateFinished) { %>
+                <h4>Finished on: <%=book.dateFinished%></h4>
+            <% } %>
+            <a href="/books/<%=book._id%>/edit">Edit</a>
+        </div>
+    </main>
+    <footer>
+    <div class="bookshelf">
+        <% for(let book of books) { %>
+            <a class="bookContainer" href="/books/<%=book._id%>"><img class="book" src="<%=book.imageUrlM%>" alt=""></a>
+        <% } %>
+    </div>
+    </footer>
+</body>
 </html>

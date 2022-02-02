@@ -80,11 +80,12 @@ app.post('/books', async (req, res) => {
     const imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
     const book = new Book({title, author, pageCount, dateStarted, dateFinished, firstSentence, imageUrlM, imageUrlL});
     await book.save();
-    res.redirect('/books');
+    res.redirect(`/books/${book._id}`);
 });
 app.get('/books/:id', async (req, res) => {
     const book = await Book.findById(req.params.id)
-    res.render('books/show', { book });
+    const books = await Book.find();
+    res.render('books/show', { book, books });
 });
 app.get('/books/:id/edit', async (req, res) => {
     const book = await Book.findById(req.params.id);
