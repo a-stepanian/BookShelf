@@ -26,6 +26,21 @@ main {
     align-items: center;
     justify-content: center;
 }
+.left h1 {
+    color: #eb5e28;
+    font-size: 2em;
+    animation: slideRight 0.3s forwards;
+}
+@keyframes slideRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-200px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 .details {
     height: 360px;
     width: 500px;
@@ -35,6 +50,17 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    animation: slide 0.3s forwards;
+}
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: translateY(200px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 form {
     font-size: 18px;

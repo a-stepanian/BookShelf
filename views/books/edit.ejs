@@ -43,11 +43,11 @@
                     <input type="date" name="dateFinished" id="dateFinished"
                     value="<%=book.dateFinished%>">
                 </div>
-                <button>SAVE</button>
+                <button><strong>Save</strong></button>
             </form>
-            <button class="cancelButton"><a href="/books/<%=book._id%>">CANCEL</a></button>
+            <a class="cancelButton" href="/books/<%=book._id%>"><strong>Cancel</strong></a>
             <form action="/books/<%=book._id%>?_method=DELETE" method="POST">
-                <button>DELETE</button>
+                <button><strong>Delete</strong></button>
             </form>
         </div>
     </main>
