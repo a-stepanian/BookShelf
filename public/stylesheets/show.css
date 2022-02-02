@@ -44,6 +44,7 @@ main {
     color: #ccc5b9;
     height: 100%;
     align-items: center;
+    justify-content: center;
 }
 .left {
     width: 420px;
