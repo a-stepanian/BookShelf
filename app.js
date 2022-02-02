@@ -89,7 +89,8 @@ app.get('/books/:id', async (req, res) => {
 });
 app.get('/books/:id/edit', async (req, res) => {
     const book = await Book.findById(req.params.id);
-    res.render('books/edit', { book });
+    const books = await Book.find();
+    res.render('books/edit', { book, books });
 });
 app.put('/books/:id', async (req, res) => {
     const book = await Book.findByIdAndUpdate(req.params.id, req.body);  //the initial project had {...req.body} passed in to updated, don't seem to need.
