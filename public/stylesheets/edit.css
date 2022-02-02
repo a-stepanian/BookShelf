@@ -33,22 +33,42 @@ main {
     height: 100%;
     border-radius: 5px;
     box-shadow: 15px 15px 15px black;
+    animation: rotate 0.3s forwards;
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    100% {
+        transform: rotate(-10deg) scale(0.8);
+    }
 }
 .details {
+    opacity: 0;
     height: 360px;
     width: 500px;
     border-left: 3px solid #ccc5b90c;
     margin-left: 20px;
-    padding-left: 20px;
+    padding-left: 40px;
     display: flex;
     flex-direction: column;
+    animation: slide 0.3s forwards;
+}
+@keyframes slide {
+    0% {
+        opacity: 0;
+        height: 0;
+    }
+    100% {
+        opacity: 1;
+        height: 360px;
+    }
 }
 form {
     font-size: 18px;
     width: 300px;
     display: flex;
     flex-direction: column;
-    margin: 0 0 0 40px;
 }
 .formField {
     margin-top: 5px;
@@ -63,25 +83,39 @@ form input, select {
     height: 26px;
 }
 button {
-    margin-top: 20px;
-    border: 3px solid black;
+    width: 300px;
+    font-family: 'JetBrains Mono', monospace;
+    margin: 10px 0;
+    border: 3px solid #eb5e28;;
     font-size: 18px;
     font-weight: 600px;
+    color: #eb5e28;
     border-radius: 5px;
     padding: 10px;
-    background-color: #eb5e28;
+    background-color: transparent;
 }
 .cancelButton {
     width: 300px;
-    margin-left: 40px;
-}
-.cancelButton a {
-    color: black;
+    text-align: center;
+    border: 3px solid #eb5e28;;
+    font-size: 18px;
+    font-weight: 900px;
+    border-radius: 5px;
+    margin: 10px 0;
+    color: #eb5e28;
     text-decoration: none;
+    padding: 10px;
+}
+.cancelButton:hover {
+    text-decoration: underline;
+    transform: translate(-2px, -2px);
+    box-shadow: 2px 2px black;
 }
 button:hover {
     cursor: pointer;
     text-decoration: underline;
+    transform: translate(-2px, -2px);
+    box-shadow: 2px 2px black;
 }
 
 footer {
