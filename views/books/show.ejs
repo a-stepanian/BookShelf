@@ -10,18 +10,20 @@
 </head>
 <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="/books/new">Add a Book</a>
-        <a href="#">Sign Up</a>
-        <a href="#">Log In</a>
+        <h1>BookShelf</h1>
+        <div class="links">
+            <a href="/">Home</a>
+            <a href="/books/new">Add a Book</a>
+            <a href="#">Sign Up</a>
+            <a href="#">Log In</a>
+        </div>
     </nav>
 
     <main>
-        <div class="logo">
-            <h1>BookShelf</h1>
-        </div>
-        <div class="cover">
-            <img src="<%=book.imageUrlL%>" alt="">
+        <div class="left">
+            <div class="coverContainer">
+                <img class="cover" src="<%=book.imageUrlL%>" alt="">
+            </div>
         </div>
         <div class="details">
             <h2><%=book.title%></h1>
