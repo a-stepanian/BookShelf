@@ -10,37 +10,43 @@
 </head>
 <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="books/new">Add a Book</a>
-        <a href="#">Sign Up</a>
-        <a href="#">Log In</a>
+        <h1>BookShelf</h1>
+        <div class="links">
+            <a href="/">Home</a>
+            <a href="/books/new">Add a Book</a>
+            <a href="#">Sign Up</a>
+            <a href="#">Log In</a>
+        </div>
     </nav>
 
     <main>
-        <h1>Add a Book!</h1>
-        <form action="/books" method="POST">
-            <label for="bookTitle">Title: </label>
-            <input type="text" name="bookTitle" id="bookTitle"
-            placeholder="Title" required autofocus>
-            <label for="format">Format: </label>
-            <select name="format" id="format">
-                <option value="book">Book / E-Reader</option>
-                <option value="audiobook">Audiobook</option>
-            </select>
-            <label for="dateStarted">Start Date: </label>
-            <input type="date" name="dateStarted" id="dateStarted">
-            <label for="dateFinished">Finish Date: </label>
-            <input type="date" name="dateFinished" id="dateFinished">
-            <div>
-                <button>Add Book</button> <a href="/books">Cancel</a>
-            </div>
-        </form>
+        <div class="left">
+            <h1>Add a Book!</h1>
+        </div>
+        <div class="details">
+            <form action="/books" method="POST">
+                <label for="bookTitle">Title: </label>
+                <input type="text" name="bookTitle" id="bookTitle"
+                placeholder="Title" required autofocus>
+                <label for="format">Format: </label>
+                <select name="format" id="format">
+                    <option value="book">Book / E-Reader</option>
+                    <option value="audiobook">Audiobook</option>
+                </select>
+                <label for="dateStarted">Start Date: </label>
+                <input type="date" name="dateStarted" id="dateStarted">
+                <label for="dateFinished">Finish Date: </label>
+                <input type="date" name="dateFinished" id="dateFinished">
+                <div class="buttons">
+                    <button>Add Book</button> <a href="/books">Cancel</a>
+                </div>
+            </form>
+        </div>
     </main>
     <footer>
-    <h2>Your Bookshelf</h2>
     <div class="bookshelf">
         <% for(let book of books) { %>
-            <div class="bookContainer"><img class="book" src="<%=book.imageUrlM%>" alt=""></div>
+            <a class="bookContainer" href="/books/<%=book._id%>"><img class="book" src="<%=book.imageUrlM%>" alt=""></a>
         <% } %>
     </div>
     </footer>
