@@ -6,8 +6,12 @@ module.exports.bookSchema = Joi.object({
     format: Joi.string().required(),
     pageCount: Joi.number(),
     firstSentence: Joi.array(),
-    dateStarted: Joi.date(),
     dateFinished: Joi.date(),
     imageUrlM: Joi.string(),
     imageUrlL: Joi.string()
-});
+}).required();
+
+module.exports.reviewSchema = Joi.object({
+    rating: Joi.number().required(),
+    comments: Joi.string()
+}).required();
