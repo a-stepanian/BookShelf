@@ -31,12 +31,12 @@ nav {
     transform: translate(-1px, -1px);
     box-shadow: 1px 1px black;
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
     .signUpLogIn {
         display: none;
     }
 }
-@media (max-width: 400px) {
+@media (max-width: 480px) {
     .logo {
         display: none;
     }
