@@ -12,7 +12,8 @@ const catchAsync = require('./utils/catchAsync');
 //for throwing Express Errors into an error template
 const ExpressError = require('./utils/ExpressError');
 // for Joi validation
-const { bookSchema } = require('./schemas.js')
+const { bookSchema, reviewSchema } = require('./schemas.js');
+const Review = require('./models/review');
 
 // Connect to DB
 mongoose.connect('mongodb://localhost:27017/book-club')
@@ -31,6 +32,15 @@ const validateBook = (req, res, next) => {
     } else {
         next();
     }
+}
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }  
 }
 
 const app = express();
@@ -106,7 +116,7 @@ app.post('/books', validateBook, catchAsync(async (req, res) => {
 }));
 
 app.get('/books/:id', catchAsync(async (req, res) => {
-    const book = await Book.findById(req.params.id)
+    const book = await Book.findById(req.params.id).populate('reviews');
     const books = await Book.find();
     res.render('books/show', { book, books });
 }));
@@ -125,6 +135,22 @@ app.put('/books/:id', validateBook, catchAsync(async (req, res) => {
 app.delete('/books/:id', catchAsync(async (req, res) => {
     await Book.findByIdAndDelete(req.params.id);
     res.redirect('/books');
+}));
+
+app.post('/books/:id/reviews', validateReview, catchAsync(async (req, res) => {
+    const book = await Book.findById(req.params.id);
+    const newReview = await new Review(req.body);
+    book.reviews.push(newReview);
+    await newReview.save();
+    await book.save();
+    res.redirect(`/books/${req.params.id}`);
+}));
+
+app.delete('/books/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    await Book.findByIdAndUpdate(id, {$pull: {reviews: reviewId} });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/books/${id}`);
 }));
 
 // generic 404 error if you try to get req /sjdhskdfh

@@ -31,6 +31,26 @@
             <% } %>
             <a href="/books/<%=book._id%>/edit">Edit</a>
         </div>
+        <div class="right">
+            <h3>Add A Review</h3>
+            <form action="/books/<%=book._id%>/reviews" method="POST">
+                <label for="rating">Rating:</label>
+                <input type="number" name="rating" id="rating">
+                <label for="comments">Comments:</label>
+                <textarea name="comments" id="comments" cols="20" rows="3"></textarea>
+                <button>Submit</button>
+            </form>
+            <h3>Reviews</h3>
+            <% for (let review of book.reviews) { %>
+                <div class="review">
+                    <p><%=review.rating%></p>
+                    <p><%=review.comments%></p>
+                    <form action="/books/<%=book._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                        <button>DELETE</button>
+                    </form>
+                </div>
+            <% } %>
+        </div>
     </main>
     
     <%- include('../bookshelf') %>

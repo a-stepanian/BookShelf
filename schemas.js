@@ -9,9 +9,9 @@ module.exports.bookSchema = Joi.object({
     dateFinished: Joi.date(),
     imageUrlM: Joi.string(),
     imageUrlL: Joi.string()
-}).required();
+});
 
 module.exports.reviewSchema = Joi.object({
     rating: Joi.number().required(),
     comments: Joi.string()
-}).required();
+});
