@@ -22,10 +22,6 @@
         <div class="details">
             <h2><%=book.title%></h1>
             <h3>by <%=book.author%></h3>
-            <h3>Page Count: <%=book.pageCount%></h3>
-            <% if (book.firstSentence.length) { %>
-                <p>"<%=book.firstSentence[0]%>.."</p>
-            <% } %>
             <% if (book.dateFinished) { %>
                 <h4>Finished on: <%=book.dateFinished%></h4>
             <% } %>
