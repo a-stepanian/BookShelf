@@ -80,10 +80,8 @@ const makeBook = async (bookTitle) => {
 }
 
 const deleteBooks = async () => {
-    const books = await Book.find({});
-    for (let book of books) {
-        await Book.findByIdAndDelete(book._id)
-    }
+    await Book.deleteMany({});
+    console.log('all books deleted')
 }
 
 deleteBooks();
@@ -91,4 +89,4 @@ deleteBooks();
 for (let i = 0; i < books.length; i++) {
     makeBook(books[i]);
 };
-console.log('seeding complete')
+console.log('made books')

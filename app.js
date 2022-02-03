@@ -40,7 +40,8 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 //For serving static files from public direcctory
-app.use(express.static('public'))
+app.use(express.static('public'));
+app.set('public', path.join(__dirname, '/public'));
 app.use(express.urlencoded({ extended: true })); //needed to get req.body
 app.use(methodOverride('_method'));
 
@@ -123,7 +124,8 @@ app.put('/books/:id', validateBook, catchAsync(async (req, res) => {
 }));
 
 app.delete('/books/:id', catchAsync(async (req, res) => {
-    await Book.findByIdAndDelete(req.params.id);
+    await Book.findByIdAndDelete(req.params.id)
+        .then(deleted => console.log(deleted));
     res.redirect('/books');
 }));
 

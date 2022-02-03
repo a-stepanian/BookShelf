@@ -37,10 +37,14 @@ main {
 }
 @keyframes rotate {
     0% {
+        opacity: 1;
         transform: rotate(0deg) scale(1);
+        box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.4);
     }
     100% {
+        opacity: 0.8;
         transform: rotate(-10deg) scale(0.8);
+        box-shadow: 17px 17px 12px rgba(0, 0, 0, 0.7);
     }
 }
 .details {
