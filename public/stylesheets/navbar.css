@@ -5,6 +5,10 @@ nav {
     justify-content: space-between;
     align-items: center;
 }
+.logo {
+    text-decoration: none;
+    color: black;
+}
 .links {
     display: flex;
 }
@@ -27,7 +31,16 @@ nav {
     transform: translate(-1px, -1px);
     box-shadow: 1px 1px black;
 }
-.logo {
-    text-decoration: none;
-    color: black;
+@media (max-width: 768px) {
+    .signUpLogIn {
+        display: none;
+    }
+}
+@media (max-width: 480px) {
+    .logo {
+        display: none;
+    }
+    nav {
+        justify-content: center;
+    }
 }
