@@ -15,9 +15,7 @@
 
     <main>
         <div class="left">
-            <div class="coverContainer">
-                <img class="cover" src="<%=book.imageUrlL%>" alt="">
-            </div>
+            <img class="cover" src="<%=book.imageUrlL%>" alt="">
         </div>
         <div class="details">
             <h2><%=book.title%></h1>
@@ -39,8 +37,8 @@
             <h3>Reviews</h3>
             <% for (let review of book.reviews) { %>
                 <div class="review">
-                    <p><%=review.rating%></p>
-                    <p><%=review.comments%></p>
+                    <p>Rating: <%=review.rating%></p>
+                    <p>Comments: <%=review.comments%></p>
                     <form action="/books/<%=book._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
                         <button>DELETE</button>
                     </form>
