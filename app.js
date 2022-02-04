@@ -125,7 +125,7 @@ app.get('/books/:id', catchAsync(async (req, res) => {
 app.get('/books/:id/edit', catchAsync(async (req, res) => {
     const book = await Book.findById(req.params.id);
     const books = await Book.find();
-    res.render('books/edit', { book, books });
+    res.render('books/edit2', { book, books });
 }));
 
 app.put('/books/:id', validateBook, catchAsync(async (req, res) => {

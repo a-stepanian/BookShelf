@@ -1,39 +1,39 @@
 <%- include('../partials/startToStyle') %>
+
     <link rel="stylesheet" href="/stylesheets/edit.css">
+
 <%- include('../partials/styleToNav') %>
 
-    <main>
-        <div class="left">
-            <div class="coverContainer">
-                <img class="cover" src="<%=book.imageUrlL%>" alt="">
+    <div class="left">
+        <div class="coverContainer">
+            <img class="cover" src="<%=book.imageUrlL%>" alt="">
+        </div>
+    </div>
+    <div class="details">
+        <form action="/books/<%=book._id%>?_method=PUT" method="POST">
+            <div class="formField">
+                <label for="title">Title: </label>
+                <input type="text" name="title" id="title"
+                value="<%=book.title%>" required>
             </div>
-        </div>
-        <div class="details">
-            <form action="/books/<%=book._id%>?_method=PUT" method="POST">
-                <div class="formField">
-                    <label for="title">Title: </label>
-                    <input type="text" name="title" id="title"
-                    value="<%=book.title%>" required>
-                </div>
-                <div class="formField">
-                    <label for="format">Format: </label>
-                    <select name="format" id="format">
-                        <option value="book">Book / E-Reader</option>
-                        <option value="audiobook">Audiobook</option>
-                    </select>
-                </div>
-                <div class="formField">
-                    <label for="dateFinished">Finished: </label>
-                    <input type="date" name="dateFinished" id="dateFinished"
-                    value="<%=book.dateFinished%>">
-                </div>
-                <button><strong>Save</strong></button>
-            </form>
-            <a class="cancelButton" href="/books/<%=book._id%>"><strong>Cancel</strong></a>
-            <form action="/books/<%=book._id%>?_method=DELETE" method="POST">
-                <button><strong>Delete</strong></button>
-            </form>
-        </div>
-    </main>
+            <div class="formField">
+                <label for="format">Format: </label>
+                <select name="format" id="format">
+                    <option value="book">Book / E-Reader</option>
+                    <option value="audiobook">Audiobook</option>
+                </select>
+            </div>
+            <div class="formField">
+                <label for="dateFinished">Finished: </label>
+                <input type="date" name="dateFinished" id="dateFinished"
+                value="<%=book.dateFinished%>">
+            </div>
+            <button><strong>Save</strong></button>
+        </form>
+        <a class="cancelButton" href="/books/<%=book._id%>"><strong>Cancel</strong></a>
+        <form action="/books/<%=book._id%>?_method=DELETE" method="POST">
+            <button><strong>Delete</strong></button>
+        </form>
+    </div>
     
 <%- include('../partials/bookshelfToEnd') %>
