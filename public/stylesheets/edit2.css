@@ -5,15 +5,18 @@ main {
 /*-------------------- Left Content Box --------------------*/
 
 .left {
+    height: 350px;
     padding-right: 40px;
     padding-left: 10px;
     display: flex;
     align-items: center;
 }
 
-.left h1 {
-    color: #eb5e28;
-    font-size: 2em;
+.cover {
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+    box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.4);
     animation: slideRight 0.3s forwards;
 }
 
@@ -23,7 +26,7 @@ main {
         transform: translateX(-200px);
     }
     100% {
-        opacity: 1;
+        opacity: 0.3;
         transform: translateX(0);
     }
 }
@@ -84,7 +87,7 @@ form input:focus, select:focus {
 }
 
 form button {
-    padding: 0 11px;
+    padding: 0 4px;
     border-radius: 5px;
     border: 3px solid black;
     font-size: 1.2em;
@@ -101,7 +104,7 @@ form button:hover {
 }
 
 form a {
-    padding: 0 5px;
+    padding: 0 4px;
     border-radius: 5px;
     border: 3px solid black;
     color: black;
@@ -128,17 +131,21 @@ footer {
     transition: none;
 }
 
-/*-------- Mobile responsive -------------------------*/
+/*-------------------------- Media queries --------------------------------*/
 
-@media (max-width: 768px) {
-    main {
-        flex-direction: column;
+@media (max-width: 786px) {    
+    .left {
+        height: 400px;
+        padding: 0;
     }
-    .left, .details {
-        padding: 0px;
-    }
-
+    
     .details {
+        padding: 0;
+        position: absolute;
         border: none;
+    }
+
+    .buttons {
+        margin: 30px 0;
     }
 }

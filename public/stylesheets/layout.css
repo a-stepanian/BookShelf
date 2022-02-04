@@ -20,6 +20,7 @@ body {
 
 nav {
     width: 100%;
+    flex: 0 1 60px;
     background-color: #eb5e28;
     display: flex;
     justify-content: space-between;
@@ -27,6 +28,7 @@ nav {
 }
 
 .logo {
+    margin-left: 10px;
     text-decoration: none;
     color: black;
 }
@@ -36,7 +38,7 @@ nav {
 }
 
 .links a {
-    margin: 5px;
+    margin-right: 10px;
     border-radius: 3px;
     border: 3px solid #252422;
     color: #252422;
@@ -74,6 +76,7 @@ nav {
 /*-------------------- Main Content Window --------------------*/
 
 main {
+    flex: 0 1 auto;
     width: 100%;
     height: 100%;
     display: flex;
@@ -85,7 +88,7 @@ main {
 
 footer {
     width: 100%;
-    height: 300px;
+    flex: 0 1 300px;
     display: flex;
     flex-direction: column;
 }
@@ -120,7 +123,7 @@ footer {
 @media (max-width: 768px) {
     footer {
         width: 100%;
-        height: 200px;
+        flex: 0 1 200px;
         display: flex;
         flex-direction: column;
     }

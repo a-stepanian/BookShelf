@@ -22,7 +22,7 @@ const books = [
     'Ready Player One',
     'The Great Gatsby',
     'Nineteen Eighty-Four',
-    'Slaughterhouse-Five',
+    'The Outsiders',
     'The Lord Of The Rings',
     'To Kill A Mockingbird',
     'Gone Girl',
