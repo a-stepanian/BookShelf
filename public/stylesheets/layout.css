@@ -1,0 +1,154 @@
+/*-------------------- Global/body --------------------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: #252422;
+    color: #ccc5b9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/*-------------------- Navbar --------------------*/
+
+nav {
+    width: 100%;
+    background-color: #eb5e28;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    text-decoration: none;
+    color: black;
+}
+
+.links {
+    display: flex;
+}
+
+.links a {
+    margin: 5px;
+    border-radius: 3px;
+    border: 3px solid #252422;
+    color: #252422;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.3em;
+    width: 120px;
+    font-size: 1.2em;
+    letter-spacing: -1.5px;
+    font-weight: 900;
+    background-color: #ccc5b9;
+}
+
+.links a:hover {
+    text-decoration: underline;
+    transform: translate(-2px, -2px);
+    box-shadow: 3px 3px black;
+}
+
+@media (max-width: 768px) {
+    .signUpLogIn {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        display: none;
+    }
+    nav {
+        justify-content: center;
+    }
+}
+
+/*-------------------- Main Content Window --------------------*/
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*-------------------- Bookshelf --------------------*/
+
+footer {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bookshelf {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items:flex-end;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+.bookContainer {
+    width: 60px;
+    height: 200px;
+    transition: 0.2s;
+}
+
+.bookContainer:hover {
+    width: 120px;
+    height: 220px;
+}
+
+.book {
+    background-color: #fffcf2;
+    height: 100%;
+    border-radius: 3px;
+    outline: 3px solid #252422;
+}
+
+@media (max-width: 768px) {
+    footer {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .bookshelf {
+        width: 100%;
+        height: 150px;
+        display: flex;
+        align-items:flex-end;
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+    
+    .bookContainer {
+        width: 60px;
+        height: 100px;
+        transition: 0.2s;
+    }
+    
+    .bookContainer:hover {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .book {
+        background-color: #fffcf2;
+        height: 100%;
+        border-radius: 3px;
+        outline: 3px solid #252422;
+    }
+}
