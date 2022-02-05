@@ -139,20 +139,25 @@ app.delete('/books/:id', catchAsync(async (req, res) => {
     res.redirect('/books');
 }));
 
+app.get('/books/:id/reviews', catchAsync(async (req, res) => {
+    const book = await Book.findById(req.params.id).populate('reviews');
+    res.render('books/reviews', { book });
+}));
+
 app.post('/books/:id/reviews', validateReview, catchAsync(async (req, res) => {
     const book = await Book.findById(req.params.id);
     const newReview = await new Review(req.body);
     book.reviews.push(newReview);
     await newReview.save();
     await book.save();
-    res.redirect(`/books/${req.params.id}`);
+    res.redirect(`/books/${req.params.id}/reviews`);
 }));
 
 app.delete('/books/:id/reviews/:reviewId', catchAsync(async (req, res) => {
     const { id, reviewId } = req.params;
     await Book.findByIdAndUpdate(id, {$pull: {reviews: reviewId} });
     await Review.findByIdAndDelete(reviewId);
-    res.redirect(`/books/${id}`);
+    res.redirect(`/books/${id}/reviews`);
 }));
 
 // generic 404 error if you try to get req /sjdhskdfh

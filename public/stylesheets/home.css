@@ -71,6 +71,8 @@ main {
     flex-direction: column;
 }
 main h1 {
+    margin-top: 50px;
+    text-align: center;
     font-size: 3em;
     color: #eb5e28;
 }

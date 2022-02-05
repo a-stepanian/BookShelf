@@ -29,4 +29,8 @@ BookSchema.post('findOneAndDelete',async function (doc) {
     }
 });
 
+BookSchema.methods.reviewAverage = function() {
+    return this.reviews.map(a => a.rating).reduce((a,b) => a + b, 0) / this.reviews.length
+}
+
 module.exports = mongoose.model('Book', BookSchema);
