@@ -84,7 +84,7 @@ form input:focus, select:focus {
 }
 
 form button {
-    padding: 0 11px;
+    padding: 6px 11px;
     border-radius: 5px;
     border: 3px solid black;
     font-size: 1.2em;
@@ -101,7 +101,7 @@ form button:hover {
 }
 
 form a {
-    padding: 0 5px;
+    padding: 6px 5px;
     border-radius: 5px;
     border: 3px solid black;
     color: black;

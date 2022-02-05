@@ -88,29 +88,28 @@ main {
 
 footer {
     width: 100%;
-    flex: 0 1 300px;
+    flex: 0 1 200px;
     display: flex;
     flex-direction: column;
 }
 
 .bookshelf {
     width: 100%;
-    height: 250px;
+    height: 150px;
     display: flex;
     align-items:flex-end;
-    overflow-y: hidden;
     overflow-x: scroll;
 }
 
 .bookContainer {
     width: 60px;
-    height: 200px;
+    height: 100px;
     transition: 0.2s;
 }
 
 .bookContainer:hover {
-    width: 120px;
-    height: 220px;
+    width: 130px;
+    height: 130px;
 }
 
 .book {
@@ -120,38 +119,22 @@ footer {
     outline: 3px solid #252422;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     footer {
-        width: 100%;
-        flex: 0 1 200px;
-        display: flex;
-        flex-direction: column;
+        flex: 0 1 300px;
     }
     
     .bookshelf {
-        width: 100%;
-        height: 150px;
-        display: flex;
-        align-items:flex-end;
-        overflow-y: hidden;
-        overflow-x: scroll;
+        height: 250px;
     }
     
     .bookContainer {
-        width: 60px;
-        height: 100px;
-        transition: 0.2s;
+        width: 80px;
+        height: 200px;
     }
     
     .bookContainer:hover {
-        width: 130px;
-        height: 130px;
-    }
-    
-    .book {
-        background-color: #fffcf2;
-        height: 100%;
-        border-radius: 3px;
-        outline: 3px solid #252422;
+        width: 120px;
+        height: 220px;
     }
 }
