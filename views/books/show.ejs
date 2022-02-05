@@ -4,9 +4,10 @@
 
 <%- include('../partials/styleToNav') %>
 
-    <div class="left">
+    <div class="coverContainer">
         <img class="cover" src="<%=book.imageUrlL%>" alt="">
     </div>
+
     <div class="details">
         <h2><%=book.title%></h1>
         <h3>by <%=book.author%></h3>
@@ -15,7 +16,8 @@
         <% } %>
         <a class="editButton" href="/books/<%=book._id%>/edit">Edit</a>
     </div>
-    <div class="right">
+
+    <section class="reviewSection">
         <h3>Add A Review</h3>
         <form class="reviewForm" action="/books/<%=book._id%>/reviews" method="POST">
             <div class="rating">
@@ -38,6 +40,7 @@
             <p><strong><%=book.reviews[i].comments%></strong></p>
         </div>
         <% } %>
-    </div>
+
+    </section>
     
 <%- include('../partials/bookshelfToEnd') %>

@@ -1,20 +1,17 @@
+/* --------------------------------------------------------- */
+/*-------------------- Main Content Box ---------------------*/
 main {
     background-color: #403d39;
+    flex-direction: column;
 }
 
-/*-------------------- Left Content Box --------------------*/
 
-.left {
-    padding-right: 40px;
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
-}
-
+/* --------------------------------------------------------- */
+/*-------------------- Left Content Box ---------------------*/
 .left h1 {
     color: #eb5e28;
     font-size: 2em;
-    animation: slideRight 0.3s forwards;
+    animation: slideRight 0.3s;
 }
 
 @keyframes slideRight {
@@ -28,18 +25,16 @@ main {
     }
 }
 
-/*-------------------- Right Content Box --------------------*/
 
+/* --------------------------------------------------------- */
+/*-------------------- Right Content Box --------------------*/
 .details {
-    border-left: 3px solid #ccc5b90c;
-    padding-left: 40px;
-    padding-right: 10px;
     display: flex;
     flex-direction: column;
-    animation: slide 0.3s forwards;
+    animation: slideUp 0.3s;
 }
 
-@keyframes slide {
+@keyframes slideUp {
     0% {
         opacity: 0;
         transform: translateY(200px);
@@ -62,7 +57,7 @@ form label {
 }
 
 form input, select {
-    border-radius: 3px;
+    border-radius: 5px;
     border: 3px solid black;
     background-color: #ccc5b9;
     font-size: 1em;
@@ -78,49 +73,40 @@ form input:focus, select:focus {
 
 .buttons {
     margin: 20px 0;
-    width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-form button {
-    padding: 6px 11px;
+.buttons a, button {
     border-radius: 5px;
     border: 3px solid black;
+    color: black;
     font-size: 1.2em;
     letter-spacing: -1.5px;
-    font-weight: 900px;
+}
+
+.buttons button {
+    padding: 6px 20px;
     background-color: #eb5e28;
 }
 
-form button:hover {
+.buttons a {
+    padding: 6px 5px;
+    background-color: #ccc5b9;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.buttons a:hover, button:hover {
     cursor: pointer;
     text-decoration: underline;
     transform: translate(-2px, -2px);
     box-shadow: 3px 3px black;
 }
 
-form a {
-    padding: 6px 5px;
-    border-radius: 5px;
-    border: 3px solid black;
-    color: black;
-    text-decoration: none;
-    text-align: center;
-    font-size: 1.2em;
-    letter-spacing: -1.5px;
-    font-weight: 900;
-    background-color: #ccc5b9;
-}
 
-form a:hover {
-    text-decoration: underline;
-    transform: translate(-2px, -2px);
-    box-shadow: 3px 3px black;
-}
-
-/*-------------------- "Bookshelf Deactivated" styling --------------------*/
-
+/* --------------------------------------------------------- */
+/*------------ "Bookshelf Deactivated" styling --------------*/
 footer {
     opacity: 0.1;
 }
@@ -128,17 +114,23 @@ footer {
     transition: none;
 }
 
-/*-------- Mobile responsive -------------------------*/
 
-@media (max-width: 768px) {
+/* --------------------------------------------------------- */
+/*---------------------- Large screen -----------------------*/
+@media (min-width: 768px) {
     main {
-        flex-direction: column;
+        flex-direction: row;
     }
-    .left, .details {
-        padding: 0px;
-    }
-
+    .left {
+        padding-right: 40px;
+        padding-left: 10px;
+        display: flex;
+        align-items: center;
+    } 
+    
     .details {
-        border: none;
+        padding-left: 40px;
+        padding-right: 10px;
+        border-left: 3px solid #ccc5b90c;
     }
 }
