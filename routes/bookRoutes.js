@@ -19,7 +19,7 @@ const validateBook = (req, res, next) => {
 
 router.get('/', catchAsync(async (req, res) => {
     const books = await Book.find();
-    res.render('books/index', { books });
+    res.render('books/index', { books, message: req.flash('success') });
 }));
 
 router.get('/new', catchAsync(async (req, res) => {
@@ -70,13 +70,14 @@ router.post('/', validateBook, catchAsync(async (req, res) => {
     const imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
     const book = new Book({title, author, pageCount, dateStarted, dateFinished, firstSentence, imageUrlM, imageUrlL});
     await book.save();
+    req.flash('success', `Added ${book.title}`);
     res.redirect(`/books/${book._id}`);
 }));
 
 router.get('/:id', catchAsync(async (req, res) => {
     const book = await Book.findById(req.params.id).populate('reviews');
     const books = await Book.find();
-    res.render('books/show', { book, books });
+    res.render('books/show', { book, books, message: req.flash('success') });
 }));
 
 router.get('/:id/edit', catchAsync(async (req, res) => {
@@ -86,13 +87,14 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
 }));
 
 router.put('/:id', validateBook, catchAsync(async (req, res) => {
-    await Book.findByIdAndUpdate(req.params.id, req.body);  //the initial project had {...req.body} passed in to updated, don't seem to need.
+    await Book.findByIdAndUpdate(req.params.id, req.body, { new: true } )  //the initial project had {...req.body} passed in to updated, don't seem to need.
+        .then(book => req.flash('success', `Updated ${book.title}`))
     res.redirect(`/books/${req.params.id}`);
 }));
 
 router.delete('/:id', catchAsync(async (req, res) => {
     await Book.findByIdAndDelete(req.params.id)
-        .then(deleted => console.log(deleted));
+        .then(deleted => req.flash('success', `Deleted ${deleted.title}`));
     res.redirect('/books');
 }));
 

@@ -8,9 +8,14 @@ const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
 const bookRoutes = require('./routes/bookRoutes');
 const reviewRoutes = require('./routes/reviewRoutes')
+const session = require('express-session');
+const flash = require('connect-flash');
+
 const app = express();
 
-// Connect to DB
+
+
+//----- Connect to Database --------------------------------------------//
 mongoose.connect('mongodb://localhost:27017/book-club')
     .then(() => {
         console.log('Connected to DB')
@@ -18,40 +23,76 @@ mongoose.connect('mongodb://localhost:27017/book-club')
         console.log('DB CONNECTION ERROR', err)
     });
 
-//For including partials
+    
+//----- For including partials -----------------------------------------//
 app.engine('ejs', ejsMate);
-//For using ejs templating from the views directory
+
+
+//----- For using ejs templating from the views directory --------------//
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-//For serving static files from public direcctory
+
+
+//----- For serving static files from public directory -----------------//
 app.use(express.static('public'));
 app.set('public', path.join(__dirname, '/public'));
-app.use(express.urlencoded({ extended: true })); //needed to get req.body
+
+
+//----- Needed to access request body ----------------------------------//
+app.use(express.urlencoded({ extended: true }));
+
+
+//----- For PUT/DELETE requests ----------------------------------------//
 app.use(methodOverride('_method'));
 
-// Routes
+
+//----- Set up session (for flash/auth----------------------------------//
+const sessionConfig = {
+    secret: 'thisisahorriblesecretandneedstobebetter!',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000*60*60*24*7,
+        maxAge: 1000*60*60*24*7
+    }
+};
+app.use(session(sessionConfig));
+
+
+//----- Set up flash ---------------------------------------------------//
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    next();
+});
+
+
+//----- Connect to routes ----------------------------------------------//
+app.use('/books', bookRoutes);
+app.use('/books/:id/reviews', reviewRoutes);
+
+
 app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.use('/books', bookRoutes);          //added in to connect to routes
-
-app.use('/books/:id/reviews', reviewRoutes);          //added in to connect to routes
-
-
-// generic 404 error if you try to get req /sjdhskdfh
+//----- Generic 404 error ----------------------------------------------//
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
 })
 
-// generic catch-all for other errors
+
+//----- Generic catch-all for other errors -----------------------------//
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     if (!err.message) err.message = 'Oh No, Something Went Wrong!'
     res.status(statusCode).render('error', { err })
 })
 
-// Serve App
+
+//----- Serve App ------------------------------------------------------//
 app.listen(3000, () => {
     console.log('Serving app on localhost:3000');
 });
