@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Book = require('../models/book');
+const Book = require('../models/bookModel');
 const axios = require('axios');
 
 mongoose.connect('mongodb://localhost:27017/book-club')
