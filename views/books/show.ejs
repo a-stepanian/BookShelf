@@ -15,6 +15,9 @@
                 <h4>Finished on: <%=book.dateFinished%></h4>
             <% } %>
             <h3>Rating: </h3>
+            <% for (let review of book.reviews) { %>
+                <h3><%=review.rating%></h3>
+            <% } %>
             <a href="/books/<%=book._id%>/reviews">Reviews</a>
             <a class="editButton" href="/books/<%=book._id%>/edit">Edit</a>
         </div>

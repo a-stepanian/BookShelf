@@ -27,10 +27,10 @@ const books = [
     'Robinson Crusoe',
     'Frankenstein',
     'The Count of Monte Cristo',
-    'David Copperfield',
-    'Huckleberry Finn',
+    'World War Z',
+    'Devil in the White City',
     'The Picture of Dorian Gray',
-    'Treasure Island',
+    'Anxious People',
     'The Hobbit',
     'Ready Player One',
     'The Great Gatsby',
@@ -94,11 +94,15 @@ const makeBook = async (bookTitle) => {
     imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
     const book = new Book({title, author, pageCount, firstSentence, imageUrlM, imageUrlL});
     await book.save();
-    let newReview = await new Review({ rating: '5', comments: 'Excellent' });
+    let newReview = await new Review({ rating: '5', comments: 'Excellent book, I will definitely read it again.' });
     book.reviews.push(newReview);
     await newReview.save();
     await book.save();
-    newReview = await new Review({ rating: '4', comments: 'Good' });
+    newReview = await new Review({ rating: '4', comments: 'Solid plot, fun read.  I recommend it!' });
+    book.reviews.push(newReview);
+    await newReview.save();
+    await book.save();
+    newReview = await new Review({ rating: '3', comments: 'While it was a good book overall, the pace was a bit slow for me.  Could have been half the length.' });
     book.reviews.push(newReview);
     await newReview.save();
     await book.save();
