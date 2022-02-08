@@ -1,0 +1,33 @@
+<%- include('../partials/startToStyle') %>
+
+    <link rel="stylesheet" href="/stylesheets/new.css">
+
+<%- include('../partials/styleToNav') %>
+
+    <div class="left">
+        <h1>Register</h1>
+    </div>
+
+    <div class="details">
+        <form action="/register" method="POST">
+            
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username"
+            placeholder="username" required autofocus>
+
+            <label for="email">Email: </label>
+            <input type="email" name="email" id="email"
+            required>
+
+            <label for="format">Password: </label>
+            <input type="password" name="password" id="password"
+            required>
+            <div class="buttons">
+                <button>Sign Up</button>        
+            </div>
+        </form>
+    </div>
+
+</main>
+</body>
+</html>

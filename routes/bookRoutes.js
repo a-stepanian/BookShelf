@@ -5,6 +5,7 @@ const ExpressError = require('../utils/ExpressError');
 const Book = require('../models/bookModel');
 const { bookSchema } = require('../schemaValidations');
 const axios = require('axios');
+const { isLoggedIn } = require('../middleware.js')
 
 
 const validateBook = (req, res, next) => {
@@ -22,12 +23,12 @@ router.get('/', catchAsync(async (req, res) => {
     res.render('books/index', { books, message: req.flash('success') });
 }));
 
-router.get('/new', catchAsync(async (req, res) => {
+router.get('/new', isLoggedIn, catchAsync(async (req, res) => {
     const books = await Book.find();
     res.render('books/new', { books });
 }));
 
-router.post('/', validateBook, catchAsync(async (req, res) => {
+router.post('/', isLoggedIn, validateBook, catchAsync(async (req, res) => {
     let { title, dateStarted, dateFinished } = req.body;
     const response = await axios.get(`http://openlibrary.org/search.json?q=${title}`);
     //initialize variables with default values;
@@ -80,19 +81,19 @@ router.get('/:id', catchAsync(async (req, res) => {
     res.render('books/show', { book, books, message: req.flash('success') });
 }));
 
-router.get('/:id/edit', catchAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
     const book = await Book.findById(req.params.id);
     const books = await Book.find();
     res.render('books/edit', { book, books });
 }));
 
-router.put('/:id', validateBook, catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, validateBook, catchAsync(async (req, res) => {
     await Book.findByIdAndUpdate(req.params.id, req.body, { new: true } )  //the initial project had {...req.body} passed in to updated, don't seem to need.
         .then(book => req.flash('success', `Updated ${book.title}`))
     res.redirect(`/books/${req.params.id}`);
 }));
 
-router.delete('/:id', catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
     await Book.findByIdAndDelete(req.params.id)
         .then(deleted => req.flash('success', `Deleted ${deleted.title}`));
     res.redirect('/books');

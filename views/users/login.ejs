@@ -1,0 +1,30 @@
+<%- include('../partials/startToStyle') %>
+
+    <link rel="stylesheet" href="/stylesheets/new.css">
+
+<%- include('../partials/styleToNav') %>
+
+    <div class="left">
+        <h1>Sign In</h1>
+    </div>
+
+    <div class="details">
+        <form action="/login" method="POST">
+            
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username"
+            placeholder="username" required autofocus>
+
+            <label for="format">Password: </label>
+            <input type="password" name="password" id="password"
+            required>
+            <div class="buttons">
+                <button>Sign In</button>        
+            </div>
+        </form>
+    </div>
+
+</main>
+<script src="/javascripts/flash.js"></script>
+</body>
+</html>

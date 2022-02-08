@@ -3,7 +3,11 @@
     <div class="links">
         <a href="/books">MyBookShelf</a>
         <a href="/books/new">Add a Book</a>
-        <a class="signUpLogIn" href="#">Sign Up</a>
-        <a class="signUpLogIn" href="#">Log In</a>
+        <% if (!currentUser) { %>
+        <a class="signUpLogIn" href="/register">Register</a>
+        <a class="signUpLogIn" href="/login">Sign In</a>
+        <% } else { %>
+        <a class="signUpLogIn" href="/logout">Sign Out</a>
+        <% } %>
     </div>
 </nav>

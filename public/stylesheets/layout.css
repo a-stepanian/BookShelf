@@ -20,6 +20,7 @@ body {
 /*----------------------------------------------------------*/
 /*----- Flash Messages -------------------------------------*/
 .flash {
+    z-index: 99;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -35,9 +36,9 @@ body {
 .close {
     border: 3px solid black;
     background-color: #ccc5b9;
-    padding: 30px 50px;
+    padding: 20px 30px;
     border-radius: 5px;
-    margin-top: 50px;
+    margin-top: 20px;
     cursor: pointer;
 }
 .close:hover {
@@ -171,6 +172,6 @@ footer {
     
     .bookContainer:hover {
         width: 150px;
-        height: 250px;
+        height: 230px;
     }
 }

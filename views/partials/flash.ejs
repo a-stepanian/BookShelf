@@ -1,4 +1,17 @@
 <% if(success && success.length) {%>
-<div class="flash"><p><%= success %></p><br>
-    <div class="close">CLOSE</div></div>
+<div class="flash">
+    <h2>Success</h2>
+    <p><%= success %></p>
+    <br>
+    <div class="close">Dismiss</div>
+</div>
+<% } %>
+
+<% if(error && error.length) {%>
+    <div class="flash">
+        <h2>Error</h2>
+        <p><%= error %></p>
+        <br>
+        <div class="close">Dismiss</div>
+    </div>
 <% } %>
