@@ -1,0 +1,26 @@
+<%- include('../partials/startToStyle') %>
+
+    <link rel="stylesheet" href="/stylesheets/clubIndex.css">
+
+<%- include('../partials/styleToNav') %>
+<h1>Browse BookShelves</h1>
+    <% for (let club of clubs) { %>
+        <a class="clubCard" href="clubs/<%=club._id%>">
+            <div class="statBox">
+                <h2 class="clubName"><%=club.clubName%></h2>
+                <h3>Members: <%=club.clubMembers.length%></h3>
+                <h3>Books: <%=club.clubBooks.length%></h3>
+            </div>
+            <div class="bookBox">
+                    <% for(let book of club.clubBooks) { %>
+                        <a class="bookImgContainer" href="#"><img class="bookImg" src="<%=book.imageUrlM%>" alt=""></a>
+                    <% } %>
+            </div>
+        </a>
+    <% } %>
+    <a class="newClub" href="/clubs/new">Make a new club</a>
+
+
+    </main>
+</body>
+</html>

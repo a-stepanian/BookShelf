@@ -1,0 +1,30 @@
+<%- include('../partials/startToStyle') %>
+
+    <link rel="stylesheet" href="/stylesheets/new.css">
+
+<%- include('../partials/styleToNav') %>
+
+    <div class="left">
+        <h1>Add a Club</h1>
+    </div>
+
+    <div class="details">
+
+        <form action="/clubs" method="POST">
+            
+            <label for="clubName">Club Name: </label>
+            <input type="text" name="clubName" id="clubName"
+            placeholder="book club" required autofocus>
+
+            <div class="buttons">
+                <button>Create Club</button>
+                <a href="/clubs">Cancel</a>
+            </div>
+        
+        </form>
+
+    </div>
+
+</main>
+</body>
+</html>

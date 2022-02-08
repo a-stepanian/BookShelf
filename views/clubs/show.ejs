@@ -1,0 +1,25 @@
+<%- include('../partials/startToStyle') %>
+
+    <link rel="stylesheet" href="/stylesheets/show.css">
+
+<%- include('../partials/styleToNav') %>
+
+    <section class="coverAndDetails">
+        <div class="coverContainer">
+            <h1><%=club.clubName%></h1>
+        </div>
+
+        <div class="details">
+            <h2>Club Members</h2>
+            <h2>Club Books</h2>
+            <% for (let book of club.clubBooks) { %>
+                <h3><%=book.title%></h3>
+            <% } %>
+            <a href="/clubs/<%=club._id%>/books/new">Add a Book</a>
+        </div>
+    </section>
+    
+</main>
+<script src="/javascripts/flash.js"></script>
+</body>
+</html>

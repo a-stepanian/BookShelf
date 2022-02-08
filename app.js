@@ -15,6 +15,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
 const User = require('./models/userModel');
+const Club = require('./models/clubModel');
+const axios = require('axios');
+const Book = require('./models/bookModel');
 
 const app = express();
 
@@ -93,6 +96,72 @@ app.use((req, res, next) => {
 app.use('/', userRoutes);
 app.use('/books', bookRoutes);
 app.use('/books/:id/reviews', reviewRoutes);
+
+app.get('/clubs', async (req, res) => {
+    const clubs = await Club.find().populate('clubBooks');
+    res.render('clubs/index', { clubs });
+});
+
+app.get('/clubs/new', (req, res) => {
+    res.render('clubs/new');
+});
+
+app.post('/clubs', async (req, res) => {
+    const { clubName } = req.body;
+    const clubMembers = [];
+    const clubBooks = [];
+    const club = await new Club({ clubName, clubMembers, clubBooks });
+    await club.save();
+    res.redirect('/clubs');
+});
+
+app.get('/clubs/:id', async (req, res) => {
+    const club = await Club.findById(req.params.id).populate('clubBooks');
+    res.render('clubs/show', { club });
+});
+
+app.get('/clubs/:id/books/new', async (req, res) => {
+    const club = await Club.findById(req.params.id);
+    res.render('books/newClubBook', { club });
+});
+
+app.post('/clubs/:id/books', async (req, res) => {
+    const foundClub = await Club.findById(req.params.id);
+    let { title, format, dateFinished } = req.body;
+    const response = await axios.get(`http://openlibrary.org/search.json?q=${title}`);
+    //initialize variables with default values;
+    let author = "404";
+    let club = foundClub._id;
+    let coverImageCode = 8406786;
+    //try to find data in the JSON response, look at first two books in the response and then resort to the default.
+    if (response.data.docs[0].author_name) {
+        author = response.data.docs[0].author_name[0]
+    } else {
+        author = response.data.docs[1].author_name[0]
+    }
+
+    if (response.data.docs[0].title) {
+        title = response.data.docs[0].title
+    } else {
+        title = response.data.docs[1].title
+    }
+
+    if (response.data.docs[0].cover_i) {
+        coverImageCode = response.data.docs[0].cover_i
+    } else {
+        coverImageCode = response.data.docs[1].cover_i;
+    }
+    //utilize the cover_i code to create image urls
+    const imageUrlM = `https://covers.openlibrary.org/b/id/${coverImageCode}-M.jpg`;
+    const imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
+    const book = new Book({title, author, format, dateFinished, imageUrlM, imageUrlL, club});
+    foundClub.clubBooks.push(book);
+    await book.save();
+    await foundClub.save();
+    req.flash('success', `Added ${book.title} to ${foundClub.clubName}`);
+    res.redirect(`/clubs/${club._id}`);
+});
+
 
 app.get('/', (req, res) => {
     res.render('home');

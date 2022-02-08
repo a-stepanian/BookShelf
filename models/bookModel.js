@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 const Review = require('./reviewModel');
 const Schema = mongoose.Schema;
+const Club = require('./clubModel');
 
 const BookSchema = new Schema({
     title: String,
     author: String,
     format: String,
-    pageCount: Number,
-    firstSentence: Array,
     dateFinished: Date,
     imageUrlM: String,
     imageUrlL: String,
@@ -16,7 +15,11 @@ const BookSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Review'
         }
-    ]
+    ],
+    club: {
+        type:Schema.Types.ObjectId,
+        ref: 'Club'
+    }
 });
 
 BookSchema.post('findOneAndDelete',async function (doc) {
