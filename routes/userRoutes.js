@@ -30,8 +30,11 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
+    console.log(req.session)
     req.flash('success', `Welcome back, ${req.body.username}!`);
     const redirectUrl = req.session.returnTo || '/books';
+    console.log(req.session)
+
     res.redirect(redirectUrl);
 })
 

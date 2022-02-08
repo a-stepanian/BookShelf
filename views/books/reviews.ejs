@@ -15,6 +15,9 @@
 </section>
 
 <section class="reviewSection">
+    <% if (!currentUser) { %>
+        <h3><a href="/login">Sign in</a> to add a review</h3>
+    <% } else { %>
     <h3>Add A Review</h3>
     <form class="reviewForm" action="/books/<%=book._id%>/reviews" method="POST">
         <div class="rating">
@@ -26,13 +29,16 @@
         <button class="submitButton">Submit</button>
     </form>
     <h3>Reviews</h3>
+    <% } %>
     <% for (let i = book.reviews.length -1; i >= 0; i--) { %>
     <div class="review">
         <div class="reviewTopLine">
             <h3>Rating: <%=book.reviews[i].rating%></h3>
+            <% if (currentUser) { %>
             <form action="/books/<%=book._id%>/reviews/<%=book.reviews[i]._id%>?_method=DELETE" method="POST">
                 <button class="deleteButton">Delete</button>
             </form>
+            <% } %>
         </div>
         <p><strong><%=book.reviews[i].comments%></strong></p>
     </div>
