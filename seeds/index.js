@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Book = require('../models/bookModel');
+const Review = require('../models/reviewModel');
 const axios = require('axios');
+
+
 
 mongoose.connect('mongodb://localhost:27017/book-club')
 .then(() => {
@@ -8,6 +11,16 @@ mongoose.connect('mongodb://localhost:27017/book-club')
 }).catch(err => {
     console.log('DB CONNECTION ERROR', err)
 });
+
+
+
+const deleteBooks = async () => {
+    await Book.deleteMany({});
+    console.log('all books deleted')
+}
+deleteBooks();
+
+
 
 const books = [
     'Don Quixote',
@@ -31,6 +44,10 @@ const books = [
     'The Book Thief',
     'Catcher In the Rye'
 ]
+
+
+
+
 
 const makeBook = async (bookTitle) => {
     const response = await axios.get(`http://openlibrary.org/search.json?q=${bookTitle}`);
@@ -77,16 +94,17 @@ const makeBook = async (bookTitle) => {
     imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
     const book = new Book({title, author, pageCount, firstSentence, imageUrlM, imageUrlL});
     await book.save();
+    let newReview = await new Review({ rating: '5', comments: 'Excellent' });
+    book.reviews.push(newReview);
+    await newReview.save();
+    await book.save();
+    newReview = await new Review({ rating: '4', comments: 'Good' });
+    book.reviews.push(newReview);
+    await newReview.save();
+    await book.save();
 }
-
-const deleteBooks = async () => {
-    await Book.deleteMany({});
-    console.log('all books deleted')
-}
-
-deleteBooks();
 
 for (let i = 0; i < books.length; i++) {
     makeBook(books[i]);
 };
-console.log('made books')
+console.log('made books');
