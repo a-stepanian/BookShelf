@@ -4,49 +4,49 @@
 
 <%- include('../partials/styleToNav') %>
 
-<section class="coverAndDetails">
-    <div class="coverContainer">
-        <img class="cover" src="<%=book.imageUrlL%>" alt="">
-    </div>
-    <div class="titleAndRating">
-        <h2><%=book.title%></h2>
-        <h3>Rating: </h3>
-    </div>
-</section>
-
-<section class="reviewSection">
-    <% if (!currentUser) { %>
-        <h3><a href="/login">Sign in</a> to add a review</h3>
-    <% } else { %>
-    <h3>Add A Review</h3>
-    <form class="reviewForm" action="/books/<%=book._id%>/reviews" method="POST">
-        <div class="rating">
-            <label for="rating"></label>
-            <input type="range" id="rating" name="rating" min="1" max="5" step="1">
+    <section class="coverAndDetails">
+        <div class="coverContainer">
+            <img class="cover" src="<%=book.imageUrlL%>" alt="">
         </div>
-        <label for="comments"></label>
-        <textarea name="comments" id="comments" cols="20" rows="3" placeholder="Leave a comment!"></textarea>
-        <button class="submitButton">Submit</button>
-    </form>
-    <h3>Reviews</h3>
-    <% } %>
-    <% for (let i = book.reviews.length -1; i >= 0; i--) { %>
-    <div class="review">
-        <div class="reviewTopLine">
-            <h3>Rating: <%=book.reviews[i].rating%></h3>
-            <% if (currentUser) { %>
-            <form action="/books/<%=book._id%>/reviews/<%=book.reviews[i]._id%>?_method=DELETE" method="POST">
-                <button class="deleteButton">Delete</button>
-            </form>
-            <% } %>
+        <div class="titleAndRating">
+            <h2><%=book.title%></h2>
+            <h3>Rating: </h3>
         </div>
-        <p><strong><%=book.reviews[i].comments%></strong></p>
-    </div>
-    <% } %>
+    </section>
 
-</section>
+    <section class="reviewSection">
+        <% if (!currentUser) { %>
+            <h3><a href="/login">Sign in</a> to add a review</h3>
+        <% } else { %>
+        <h3>Add A Review</h3>
+        <form class="reviewForm" action="/books/<%=book._id%>/reviews" method="POST">
+            <div class="rating">
+                <label for="rating"></label>
+                <input type="range" id="rating" name="rating" min="1" max="5" step="1">
+            </div>
+            <label for="comments"></label>
+            <textarea name="comments" id="comments" cols="20" rows="3" placeholder="Leave a comment!"></textarea>
+            <button class="submitButton">Submit</button>
+        </form>
+        <h3>Reviews</h3>
+        <% } %>
+        <% for (let i = book.reviews.length -1; i >= 0; i--) { %>
+        <div class="review">
+            <div class="reviewTopLine">
+                <h3>Rating: <%=book.reviews[i].rating%></h3>
+                <% if (currentUser) { %>
+                <form action="/books/<%=book._id%>/reviews/<%=book.reviews[i]._id%>?_method=DELETE" method="POST">
+                    <button class="deleteButton">Delete</button>
+                </form>
+                <% } %>
+            </div>
+            <p><strong><%=book.reviews[i].comments%></strong></p>
+        </div>
+        <% } %>
 
-</main>
-<script src="/javascripts/flash.js"></script>
+    </section>
+
+    </main>
+    <script src="/javascripts/flash.js"></script>
 </body>
 </html>

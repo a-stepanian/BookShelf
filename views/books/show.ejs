@@ -1,26 +1,38 @@
 <%- include('../partials/startToStyle') %>
 
-    <link rel="stylesheet" href="/stylesheets/show.css">
+    <link rel="stylesheet" href="/stylesheets/books/clubBookShow.css">
 
 <%- include('../partials/styleToNav') %>
-    <section class="coverAndDetails">
-        <div class="coverContainer">
-            <img class="cover" src="<%=book.imageUrlL%>" alt="">
-        </div>
+        <section class="coverAndDetails">
+            <div class="coverContainer">
+                <img class="cover" src="<%=book.imageUrlL%>" alt="">
+            </div>
 
-        <div class="details">
-            <h2><%=book.title%></h2>
-            <h3>by <%=book.author%></h3>
-            <% if (book.dateFinished) { %>
-                <h4>Finished on: <%=book.dateFinished%></h4>
+            <div class="details">
+                <h2><%=book.title%></h2>
+                <h3>by <%=book.author%></h3>
+                <% if (book.dateFinished) { %>
+                    <h4>Finished on: <%=book.dateFinished%></h4>
+                <% } %>
+                <h3>Rating: </h3>
+                <% for (let review of book.reviews) { %>
+                    <h3><%=review.rating%></h3>
+                <% } %>
+                <a href="/books/<%=book._id%>/reviews">Reviews</a>
+                <a class="editButton" href="/clubs/<%=club._id%>/books/<%=book._id%>/edit">Edit</a>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <div class="bookshelf">
+            <% for(let book of club.clubBooks) { %>
+                <a class="bookContainer" href="/clubs/<%=club._id%>/books/<%=book._id%>"><img class="book" src="<%=book.imageUrlM%>" alt=""></a>
             <% } %>
-            <h3>Rating: </h3>
-            <% for (let review of book.reviews) { %>
-                <h3><%=review.rating%></h3>
-            <% } %>
-            <a href="/books/<%=book._id%>/reviews">Reviews</a>
-            <a class="editButton" href="/books/<%=book._id%>/edit">Edit</a>
         </div>
-    </section>
+    </footer>
     
-<%- include('../partials/bookshelfToEnd') %>
+    <script src="/javascripts/flash.js"></script>
+</body>
+</html>

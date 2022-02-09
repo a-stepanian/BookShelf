@@ -6,7 +6,6 @@ const Club = require('./clubModel');
 const BookSchema = new Schema({
     title: String,
     author: String,
-    format: String,
     imageUrlM: String,
     imageUrlL: String,
     reviews: [

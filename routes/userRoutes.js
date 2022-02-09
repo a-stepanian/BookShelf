@@ -6,7 +6,7 @@ const passport = require('passport');
 
 router.get('/register', (req, res) => {
     if (req.isAuthenticated()) {
-        return res.redirect('/books');
+        return res.redirect('/clubs');
     }
     res.render('users/register');
 });
@@ -18,13 +18,13 @@ router.post('/register', catchAsync(async (req, res) => {
     req.login(registeredUser, err => {
         if(err) return next(err);
         req.flash('success', `Welcome to BookShelf, ${username}`);
-        res.redirect('/books');
+        res.redirect('/clubs');
     })
 }));
 
 router.get('/login', (req, res) => {
     if (req.isAuthenticated()) {
-        return res.redirect('/books');
+        return res.redirect('/clubs');
     }
     res.render('users/login');
 });
@@ -32,16 +32,15 @@ router.get('/login', (req, res) => {
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
     console.log(req.session)
     req.flash('success', `Welcome back, ${req.body.username}!`);
-    const redirectUrl = req.session.returnTo || '/books';
+    const redirectUrl = req.session.returnTo || '/clubs';
     console.log(req.session)
-
     res.redirect(redirectUrl);
 })
 
 router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success', 'Goodbye!');
-    res.redirect('/books');
+    res.redirect('/clubs');
 });
 
 module.exports = router;

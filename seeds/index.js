@@ -91,18 +91,18 @@ const makeBook = async (bookTitle) => {
     foundClub.clubBooks.push(book);
     await book.save();
     await foundClub.save();
-    let newReview = await new Review({ rating: '5', comments: 'Excellent book, I will definitely read it again.' });
-    book.reviews.push(newReview);
-    await newReview.save();
-    await book.save();
-    newReview = await new Review({ rating: '4', comments: 'Solid plot, fun read.  I recommend it!' });
-    book.reviews.push(newReview);
-    await newReview.save();
-    await book.save();
-    newReview = await new Review({ rating: '3', comments: 'While it was a good book overall, the pace was a bit slow for me.  Could have been half the length.' });
-    book.reviews.push(newReview);
-    await newReview.save();
-    await book.save();
+    // let newReview = await new Review({ rating: '5', comments: 'Excellent book, I will definitely read it again.' });
+    // book.reviews.push(newReview);
+    // await newReview.save();
+    // await book.save();
+    // newReview = await new Review({ rating: '4', comments: 'Solid plot, fun read.  I recommend it!' });
+    // book.reviews.push(newReview);
+    // await newReview.save();
+    // await book.save();
+    // newReview = await new Review({ rating: '3', comments: 'While it was a good book overall, the pace was a bit slow for me.  Could have been half the length.' });
+    // book.reviews.push(newReview);
+    // await newReview.save();
+    // await book.save();
 }
 
 // CHANGE THE ARRAY NAME TO THE ARRAY OF BOOKS YOU WANT TO SEED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -1,30 +1,31 @@
 <%- include('../partials/startToStyle') %>
 
-    <link rel="stylesheet" href="/stylesheets/clubNew.css">
+    <link rel="stylesheet" href="/stylesheets/clubs/clubNew.css">
 
 <%- include('../partials/styleToNav') %>
 
-    <div class="left">
-        <h1>Start a Club</h1>
-    </div>
+        <div class="left">
+            <h1>Start a Club</h1>
+        </div>
 
-    <div class="details">
+        <div class="details">
 
-        <form action="/clubs" method="POST">
+            <form action="/clubs" method="POST">
+                
+                <label for="clubName">Club Name: </label>
+                <input type="text" name="clubName" id="clubName"
+                placeholder="book club" required autofocus>
+
+                <div class="buttons">
+                    <button class="createButton">Create Club</button>
+                    <a href="/clubs">Cancel</a>
+                </div>
             
-            <label for="clubName">Club Name: </label>
-            <input type="text" name="clubName" id="clubName"
-            placeholder="book club" required autofocus>
+            </form>
 
-            <div class="buttons">
-                <button class="createButton">Create Club</button>
-                <a href="/clubs">Cancel</a>
-            </div>
-        
-        </form>
+        </div>
 
-    </div>
-
-</main>
+    </main>
+    <script src="/javascripts/flash.js"></script>
 </body>
 </html>
