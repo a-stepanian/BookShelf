@@ -127,7 +127,7 @@ app.get('/clubs/:id/books/new', async (req, res) => {
 
 app.post('/clubs/:id/books', async (req, res) => {
     const foundClub = await Club.findById(req.params.id);
-    let { title, format, dateFinished } = req.body;
+    let { title, format } = req.body;
     const response = await axios.get(`http://openlibrary.org/search.json?q=${title}`);
     //initialize variables with default values;
     let author = "404";
@@ -154,7 +154,7 @@ app.post('/clubs/:id/books', async (req, res) => {
     //utilize the cover_i code to create image urls
     const imageUrlM = `https://covers.openlibrary.org/b/id/${coverImageCode}-M.jpg`;
     const imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
-    const book = new Book({title, author, format, dateFinished, imageUrlM, imageUrlL, club});
+    const book = new Book({title, author, format, imageUrlM, imageUrlL});
     foundClub.clubBooks.push(book);
     await book.save();
     await foundClub.save();
@@ -162,6 +162,10 @@ app.post('/clubs/:id/books', async (req, res) => {
     res.redirect(`/clubs/${club._id}`);
 });
 
+app.delete('/clubs/:id', async (req, res) => {
+    await Club.findByIdAndDelete(req.params.id);
+    res.redirect('/clubs')
+});
 
 app.get('/', (req, res) => {
     res.render('home');

@@ -2,6 +2,7 @@ const express= require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
+const Club = require('../models/clubModel')
 const Book = require('../models/bookModel');
 const { bookSchema } = require('../schemaValidations');
 const axios = require('axios');
@@ -29,7 +30,7 @@ router.get('/new', isLoggedIn, catchAsync(async (req, res) => {
 }));
 
 router.post('/', isLoggedIn, validateBook, catchAsync(async (req, res) => {
-    let { title, dateStarted, dateFinished } = req.body;
+    let { title, format } = req.body;
     const response = await axios.get(`http://openlibrary.org/search.json?q=${title}`);
     //initialize variables with default values;
     let author = "404";
@@ -69,7 +70,7 @@ router.post('/', isLoggedIn, validateBook, catchAsync(async (req, res) => {
     //utilize the cover_i code to create image urls
     const imageUrlM = `https://covers.openlibrary.org/b/id/${coverImageCode}-M.jpg`;
     const imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
-    const book = new Book({title, author, pageCount, dateStarted, dateFinished, firstSentence, imageUrlM, imageUrlL});
+    const book = new Book({title, author, imageUrlM, imageUrlL});
     await book.save();
     req.flash('success', `Added ${book.title}`);
     res.redirect(`/books/${book._id}`);

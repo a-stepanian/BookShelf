@@ -1,56 +1,77 @@
 main {
+    background-color: #ccc5b9;
     padding: 20px;
     flex-direction: column;
     overflow-y: scroll;
     justify-content: flex-start;
 }
 
+main h1 {
+    color: #eb6028;
+    margin-bottom: 20px;
+}
+
 .clubCard {
-    margin: 20px 0;
-    padding: 10px;
+    margin-bottom: 20px;
+    padding: 10px 3px;
     width: 100%;
     height: 200px;
     display: flex;
-    border: 3px solid #eb5e28;
+    flex-direction: column;
+    border: 3px solid black;
     border-radius: 5px;
-    background-color: #ccc5b9;
+    background-color: rgba(235, 95, 40, 0.5);
+    text-decoration: none;
 }
+
+.clubInfoBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(235, 95, 40, 0.5);
+}
+
 .statBox {
-    width: 120px;
-    padding: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 h2 {
-    margin-bottom: 10px;
-    color: #eb5e28;
-    font-size: 1rem;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+h3 {
+    color: black;
+    font-size: 0.8rem;
+    font-weight: 900;
 }
 
-h3 {
-    font-size: 1rem;
+.clubCard:hover, .clubCard:active {
     color: black;
+    text-decoration: underline;
+    transform: translate(-2px, -2px);
+    box-shadow: 3px 3px black;
 }
 
 .bookBox {
     flex: 1 1 auto;
     display: flex;
-    align-items: flex-end;
     overflow-x: scroll;
 }
 
 .bookImgContainer {
-    width: 60px;
+    margin: 0 5px;
+    width: auto;
     height: 100%;
 }
 
 .bookImg {
-    border-radius: 5px;
+    border-radius: 8px;
     height: 100%;
-    outline: 1px solid black;
-    border: 1px solid #ccc5b9;
+    border: 3px solid black;
+    background-color: #ccc5b9;
 }
 
 @media (min-width: 786px) {

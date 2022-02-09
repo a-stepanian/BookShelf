@@ -1,25 +1,31 @@
 <%- include('../partials/startToStyle') %>
 
-    <link rel="stylesheet" href="/stylesheets/show.css">
+    <link rel="stylesheet" href="/stylesheets/clubShow.css">
 
 <%- include('../partials/styleToNav') %>
 
     <section class="coverAndDetails">
         <div class="coverContainer">
             <h1><%=club.clubName%></h1>
+            <h3>Members: <%=club.clubMembers.length%></h3>
+            <h3>Books: <%=club.clubBooks.length%></h3>
         </div>
 
         <div class="details">
-            <h2>Club Members</h2>
-            <h2>Club Books</h2>
-            <% for (let book of club.clubBooks) { %>
-                <h3><%=book.title%></h3>
-            <% } %>
+            <form action="/clubs/<%=club._id%>?_method=DELETE" method="POST">
+                <button>DELETE CLUB</button>
+            </form>
             <a href="/clubs/<%=club._id%>/books/new">Add a Book</a>
         </div>
     </section>
-    
 </main>
+<footer>
+    <div class="bookshelf">
+        <% for(let book of club.clubBooks) { %>
+            <a class="bookContainer" href="/books/<%=book._id%>"><img class="book" src="<%=book.imageUrlM%>" alt=""></a>
+        <% } %>
+    </div>
+</footer>
 <script src="/javascripts/flash.js"></script>
 </body>
 </html>

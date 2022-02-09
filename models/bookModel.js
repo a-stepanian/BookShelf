@@ -7,7 +7,6 @@ const BookSchema = new Schema({
     title: String,
     author: String,
     format: String,
-    dateFinished: Date,
     imageUrlM: String,
     imageUrlL: String,
     reviews: [
@@ -15,14 +14,10 @@ const BookSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Review'
         }
-    ],
-    club: {
-        type:Schema.Types.ObjectId,
-        ref: 'Club'
-    }
+    ]
 });
 
-BookSchema.post('findOneAndDelete',async function (doc) {
+BookSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {
         await Review.deleteMany({
             _id: {
