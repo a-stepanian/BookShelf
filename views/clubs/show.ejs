@@ -12,9 +12,7 @@
         </div>
 
         <div class="details">
-            <form action="/clubs/<%=club._id%>?_method=DELETE" method="POST">
-                <button>DELETE CLUB</button>
-            </form>
+            <a href="/clubs/<%=club._id%>/edit">Edit Club</a>
             <a href="/clubs/<%=club._id%>/books/new">Add a Book</a>
         </div>
     </section>
@@ -22,7 +20,7 @@
 <footer>
     <div class="bookshelf">
         <% for(let book of club.clubBooks) { %>
-            <a class="bookContainer" href="/books/<%=book._id%>"><img class="book" src="<%=book.imageUrlM%>" alt=""></a>
+            <a class="bookContainer" href="/clubs/<%=club._id%>/books/<%=book._id%>"><img class="book" src="<%=book.imageUrlM%>" alt=""></a>
         <% } %>
     </div>
 </footer>

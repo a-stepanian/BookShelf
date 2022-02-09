@@ -139,13 +139,11 @@ app.post('/clubs/:id/books', async (req, res) => {
     } else {
         author = response.data.docs[1].author_name[0]
     }
-
     if (response.data.docs[0].title) {
         title = response.data.docs[0].title
     } else {
         title = response.data.docs[1].title
     }
-
     if (response.data.docs[0].cover_i) {
         coverImageCode = response.data.docs[0].cover_i
     } else {
@@ -160,6 +158,29 @@ app.post('/clubs/:id/books', async (req, res) => {
     await foundClub.save();
     req.flash('success', `Added ${book.title} to ${foundClub.clubName}`);
     res.redirect(`/clubs/${club._id}`);
+});
+
+app.get('/clubs/:id/books/:bookId', async (req, res) => {
+    const { id, bookId } = req.params;
+    const club = await Club.findById(id).populate('clubBooks');
+    const book = await Book.findById(bookId);
+    res.render('books/clubShow', { club, book });
+});
+
+app.get('/clubs/:id/edit', async (req, res) => {
+    const club = await Club.findById(req.params.id);
+    res.render('clubs/edit', { club });
+});
+
+app.put('/clubs/:id', async (req, res) => {
+    const { id } = req.params;
+    const club = await Club.findByIdAndUpdate(id, req.body);
+    res.redirect(`/clubs/${req.params.id}`);
+});
+
+app.delete('/clubs/:id', async (req, res) => {
+    await Club.findByIdAndDelete(req.params.id);
+    res.redirect('/clubs')
 });
 
 app.delete('/clubs/:id', async (req, res) => {

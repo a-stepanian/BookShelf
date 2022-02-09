@@ -5,26 +5,24 @@
 <%- include('../partials/styleToNav') %>
 
     <div class="left">
-        <h1>Start a Club</h1>
+        <h1>Edit Your Club</h1>
+        <p>Club ID: <%=club._id%></p>
     </div>
 
     <div class="details">
-
-        <form action="/clubs" method="POST">
-            
+        <form action="/clubs/<%=club._id%>?_method=PUT" method="POST">
             <label for="clubName">Club Name: </label>
             <input type="text" name="clubName" id="clubName"
-            placeholder="book club" required autofocus>
-
+            value="<%=club.name%>" required autofocus>
             <div class="buttons">
-                <button class="createButton">Create Club</button>
+                <button class="saveButton">Save</button>
                 <a href="/clubs">Cancel</a>
             </div>
-        
         </form>
-
+        <form action="/clubs/<%=club._id%>?_method=DELETE" method="POST">
+            <button class="deleteButton">Delete Club</button>
+        </form>    
     </div>
-
 </main>
 </body>
 </html>

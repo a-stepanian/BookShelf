@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
+const Club = require('../models/clubModel');
 const Book = require('../models/bookModel');
 const Review = require('../models/reviewModel');
 const axios = require('axios');
-
-
 
 mongoose.connect('mongodb://localhost:27017/book-club')
 .then(() => {
@@ -12,17 +11,14 @@ mongoose.connect('mongodb://localhost:27017/book-club')
     console.log('DB CONNECTION ERROR', err)
 });
 
-
-
 const deleteBooks = async () => {
     await Book.deleteMany({});
     console.log('all books deleted')
 }
+// UNCOMMENT TO DELETE BOOKS
 deleteBooks();
 
-
-
-const books = [
+const randomBooks = [
     'Don Quixote',
     'Robinson Crusoe',
     'Frankenstein',
@@ -45,15 +41,26 @@ const books = [
     'Catcher In the Rye'
 ]
 
+const fantasyBooks = [
+    'A Game of Thrones',
+    'A Clash of Kings',
+    'A Storm of Swords',
+    'A Feast for Crows',
+    'A Dance With Dragons',
+    'The Hobbit',
+    'Lord of the Rings',
+    'The Two Towers',
+    'Return of the King'
+]
 
 
-
+// CHANGE THIS ID FOR THE CLUB YOU WANT TO SEED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+const clubId = '62034b567d9cfdb7adf75f05';
 
 const makeBook = async (bookTitle) => {
+    const foundClub = await Club.findById(clubId);
     const response = await axios.get(`http://openlibrary.org/search.json?q=${bookTitle}`);
     let author = 'J R R TOLKIEN';
-    let pageCount = 404;
-    let firstSentence = [];
     let coverImageCode = 8406786;
     //try to find data in the JSON response, look at first two books in the response and then resort to the default.
     if (response.data.docs[0].author_name) {
@@ -68,18 +75,6 @@ const makeBook = async (bookTitle) => {
         title = response.data.docs[1].title
     }
 
-    if (response.data.docs[0].number_of_pages_median) {
-        pageCount = response.data.docs[0].number_of_pages_median;
-    } else {
-        pageCount = response.data.docs[1].number_of_pages_median;
-    }
-
-    if (response.data.docs[0].first_sentence) {
-        firstSentence = response.data.docs[0].first_sentence;
-    } else {
-        firstSentence = [];
-    }
-
     if (response.data.docs[0].cover_i) {
         coverImageCode = response.data.docs[0].cover_i
     } else {
@@ -92,8 +87,10 @@ const makeBook = async (bookTitle) => {
 
     imageUrlM = `https://covers.openlibrary.org/b/id/${coverImageCode}-M.jpg`;
     imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
-    const book = new Book({title, author, pageCount, firstSentence, imageUrlM, imageUrlL});
+    const book = new Book({title, author, imageUrlM, imageUrlL});
+    foundClub.clubBooks.push(book);
     await book.save();
+    await foundClub.save();
     let newReview = await new Review({ rating: '5', comments: 'Excellent book, I will definitely read it again.' });
     book.reviews.push(newReview);
     await newReview.save();
@@ -108,7 +105,8 @@ const makeBook = async (bookTitle) => {
     await book.save();
 }
 
-for (let i = 0; i < books.length; i++) {
-    makeBook(books[i]);
+// CHANGE THE ARRAY NAME TO THE ARRAY OF BOOKS YOU WANT TO SEED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+for (let i = 0; i < fantasyBooks.length; i++) {
+    makeBook(fantasyBooks[i]);
 };
 console.log('made books');
