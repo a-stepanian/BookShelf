@@ -11,6 +11,12 @@ main h1 {
     margin-bottom: 20px;
 }
 
+.allClubs {
+    width: 100%;
+}
+
+
+
 .clubCard {
     margin-bottom: 20px;
     padding: 10px 3px;
@@ -25,6 +31,7 @@ main h1 {
 }
 
 .clubInfoBox {
+    height: 34px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -57,10 +64,24 @@ h3 {
 }
 
 .bookBox {
-    flex: 1 1 auto;
+    height: 130px;
     display: flex;
     overflow-x: scroll;
 }
+
+.bookBox::-webkit-scrollbar {
+    width: 1px;
+    height: 15px;
+    background-color: transparent; /* or add it to the track */
+  }
+.bookBox::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: rgba(235, 95, 40, 0.4);
+}
+.clubCard:hover .bookBox::-webkit-scrollbar-thumb {
+    background: rgba(235, 95, 40, 0.8);
+}
+  
 
 .bookImgContainer {
     margin: 0 5px;
@@ -95,4 +116,19 @@ h3 {
     text-decoration: underline;
     transform: translate(-2px, -2px);
     box-shadow: 3px 3px black;
+}
+
+
+@media (min-width: 786px) {
+    .allClubs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        flex-wrap: wrap;
+    }    
+    .clubCard {
+        margin: 20px 2.5%;
+        width: 45%;
+    }
 }

@@ -4,6 +4,7 @@
 
 <%- include('../partials/styleToNav') %>
 <h1>Browse BookShelves</h1>
+<section class="allClubs">
     <% for (let club of clubs) { %>
         <a class="clubCard" href="clubs/<%=club._id%>">
             <div class="clubInfoBox">
@@ -20,6 +21,7 @@
             </div>
         </a>
     <% } %>
+</section>
     <a class="newClub" href="/clubs/new">Make a new club</a>
 
     </main>
