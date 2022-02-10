@@ -126,8 +126,14 @@ router.post('/', isLoggedIn, validateBook, catchAsync(async (req, res) => {
 router.get('/:bookId', catchAsync(async (req, res) => {
     const { id, bookId } = req.params;
     const club = await Club.findById(id).populate('clubBooks');
-    const book = await Book.findById(bookId);
-    res.render('books/show', { club, book });
+    const book = await Book.findById(bookId).populate('reviews');
+    let sum = 0;
+    for (let i = 0; i < book.reviews.length; i++) {
+        sum += book.reviews[i].rating;
+    }
+    let average = (sum / book.reviews.length).toFixed(1);
+    console.log(average)
+    res.render('books/show', { club, book, average });
 }));
 
 // router.get('/:id', catchAsync(async (req, res) => {

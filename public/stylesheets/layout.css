@@ -158,6 +158,7 @@ footer {
 
 .book {
     background-color: #fffcf2;
+    border: 1px solid #fffcf2;
     height: 100%;                   /*100px high normal*/
     border-radius: 3px;             /*130 on hover*/
     outline: 3px solid #252422;

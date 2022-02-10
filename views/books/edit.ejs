@@ -1,29 +1,30 @@
 <%- include('../partials/startToStyle') %>
 
-    <link rel="stylesheet" href="/stylesheets/new.css">
+    <link rel="stylesheet" href="/stylesheets/clubs/clubEdit.css">
 
 <%- include('../partials/styleToNav') %>
 
         <div class="left">
             <h1>Edit Book</h1>
-            <p>Book ID: <%=book._id%></p>
         </div>
 
         <div class="details">
-
-            <form action="/clubs/<%=club._id%>/books/<%=book._id%>?_method=PUT" method="POST">
+            <form class="form" action="/clubs/<%=club._id%>/books/<%=book._id%>?_method=PUT" method="POST">
                 <label for="title">Title: </label>
                 <input type="text" name="title" id="title"
                 value="<%=book.title%>" required autofocus>
                 <div class="buttons">
-                    <button>Save Changes</button> <a href="/clubs/<%=club._id%>/books/<%=book._id%>">Cancel</a>
+                    <button class="saveButton">Save</button>
+                    <a href="/clubs/<%=club._id%>/books/<%=book._id%>">Cancel</a>
                 </div>
             </form>
-        
-            <form action="/clubs/<%=club._id%>/books/<%=book._id%>?_method=DELETE" method="POST">
-                <button>Delete</button>
-            </form>
-
+            
+            <div class="idAndDelete">
+                <form action="/clubs/<%=club._id%>/books/<%=book._id%>?_method=DELETE" method="POST">
+                    <button class="deleteButton">Delete Book</button>
+                </form>
+                <p><strong>Book ID: <%=book._id%></strong></p>
+            </div>
         </div>
 
     </main>

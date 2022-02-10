@@ -31,6 +31,7 @@ main {
 .details {
     display: flex;
     flex-direction: column;
+    align-items: center;
     animation: slideUp 0.3s;
 }
 
@@ -45,18 +46,18 @@ main {
     }
 }
 
-form {
+.form {
     width: 200px;
     display: flex;
     flex-direction: column;
 }
 
-form label {
+.form label {
     margin-top: 20px;
     font-size: 1.2em;
 }
 
-form input, select {
+.form input, select {
     border-radius: 5px;
     border: 3px solid black;
     background-color: #ccc5b9;
@@ -66,7 +67,7 @@ form input, select {
     font-weight: 900;
 }
 
-form input:focus, select:focus {
+.form input:focus, select:focus {
     outline: none;
     border: 3px solid #eb5e28;
 }
@@ -89,7 +90,7 @@ form input:focus, select:focus {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 900;
     color: black;
-    padding: 6px 3px;
+    padding: 6px 36px;
     background-color: #eb5e28;
 }
 
@@ -107,16 +108,25 @@ form input:focus, select:focus {
     box-shadow: 3px 3px black;
 }
 
-
-/* --------------------------------------------------------- */
-/*------------ "Bookshelf Deactivated" styling --------------*/
-footer {
-    opacity: 0.1;
-}
-.bookContainer {
-    transition: none;
+.idAndDelete {
+    margin-top: 30px;
+    width: min-content;
+    display: flex;
 }
 
+.deleteButton {
+    margin-right: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    border-radius: 5px;
+    border: 3px solid black;
+    color: black;
+    width: min-content;
+    font-size: 0.8em;
+    letter-spacing: -1.5px;
+    background-color: #ccc5b9;
+    font-weight: 900;
+    text-decoration: none;
+}
 
 /* --------------------------------------------------------- */
 /*---------------------- Large screen -----------------------*/

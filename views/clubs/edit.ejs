@@ -6,11 +6,10 @@
 
         <div class="left">
             <h1>Edit Your Club</h1>
-            <p>Club ID: <%=club._id%></p>
         </div>
 
         <div class="details">
-            <form action="/clubs/<%=club._id%>?_method=PUT" method="POST">
+            <form class="form" action="/clubs/<%=club._id%>?_method=PUT" method="POST">
                 <label for="clubName">Club Name: </label>
                 <input type="text" name="clubName" id="clubName"
                 value="<%=club.clubName%>" required autofocus>
@@ -19,9 +18,13 @@
                     <a href="/clubs">Cancel</a>
                 </div>
             </form>
-            <form action="/clubs/<%=club._id%>?_method=DELETE" method="POST">
-                <button class="deleteButton">Delete Club</button>
-            </form>    
+            <div class="idAndDelete">
+                <form action="/clubs/<%=club._id%>?_method=DELETE" method="POST">
+                    <button class="deleteButton">Delete Club</button>
+                </form>    
+                <p><strong>Club ID: <%=club._id%></strong></p>
+            </div>
+
         </div>
         
     </main>

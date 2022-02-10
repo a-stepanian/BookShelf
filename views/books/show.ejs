@@ -3,28 +3,30 @@
     <link rel="stylesheet" href="/stylesheets/books/clubBookShow.css">
 
 <%- include('../partials/styleToNav') %>
-        <h1><a href="/clubs/<%=club._id%>"><%=club.clubName%></a></h1>
+        <h2><%=book.title%></h2>
+        <h3>by <%=book.author%></h3>
         <section class="coverAndDetails">
+            
             <div class="coverContainer">
                 <img class="cover" src="<%=book.imageUrlL%>" alt="">
             </div>
 
             <div class="details">
-                <h2><%=book.title%></h2>
-                <h3>by <%=book.author%></h3>
-                <% if (book.dateFinished) { %>
-                    <h4>Finished on: <%=book.dateFinished%></h4>
+        
+                <% if (average !== 'NaN') { %>
+                    <h4><span class="ratingWord">Rating: </span><%=average%>&#9734;</h4>
+                    <a href="/books/<%=book._id%>/reviews">Reviews</a>
+                <% } else { %>
+                    <h3>Not yet rated...</h3>
+                <a href="/books/<%=book._id%>/reviews">Leave a review</a>
                 <% } %>
-                <h3>Rating: </h3>
-                <% for (let review of book.reviews) { %>
-                    <h3><%=review.rating%></h3>
-                <% } %>
-                <a href="/books/<%=book._id%>/reviews">Reviews</a>
                 <a class="editButton" href="/clubs/<%=club._id%>/books/<%=book._id%>/edit">Edit</a>
             </div>
+
         </section>
         
     </main>
+    <a class="back" href="/clubs/<%=club._id%>">&#171; <%=club.clubName%></a>
 
     <footer>
         <div class="bookshelf">
@@ -33,7 +35,6 @@
             <% } %>
         </div>
     </footer>
-    
     <script src="/javascripts/flash.js"></script>
 </body>
 </html>
