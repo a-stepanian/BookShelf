@@ -21,7 +21,11 @@
             </form>
             <% } %>
         </aside>
-        <aside class="clubImage"></aside>
+        <aside class="clubImage">
+            <% if (club.clubImgUrl) { %>
+            <img src="<%=club.clubImgUrl%>" alt="">
+            <% } %>
+        </aside>
     </section>
 
     </main>

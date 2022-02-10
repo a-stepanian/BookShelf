@@ -132,7 +132,6 @@ router.get('/:bookId', catchAsync(async (req, res) => {
         sum += book.reviews[i].rating;
     }
     let average = (sum / book.reviews.length).toFixed(1);
-    console.log(average)
     res.render('books/show', { club, book, average });
 }));
 

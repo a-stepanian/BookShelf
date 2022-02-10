@@ -15,6 +15,7 @@ module.exports.reviewSchema = Joi.object({
 
 module.exports.clubSchema = Joi.object({
     clubName: Joi.string().required(),
+    clubImgUrl: Joi.string(),
     clubMembers: Joi.array(),
     clubBooks: Joi.array()
 });
