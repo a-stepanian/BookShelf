@@ -30,10 +30,8 @@ const validateBook = (req, res, next) => {
 
 // Club Book New
 router.get('/new', isLoggedIn, catchAsync(async (req, res) => {
-    console.log(req.params)
     const { id } = req.params;
     const club = await Club.findById(id);
-    console.log(club)
     res.render('books/new', { club });
 }));
 
@@ -74,8 +72,7 @@ router.post('/', isLoggedIn, validateBook, catchAsync(async (req, res) => {
     foundClub.clubBooks.push(book);
     await book.save();
     await foundClub.save();
-    req.flash('success', `Added ${book.title} to ${foundClub.clubName}`);
-    res.redirect(`/clubs/${club._id}`);
+    res.redirect(`/clubs/${club._id}/books/${book._id}`);
 }));
 
 // router.post('/', isLoggedIn, validateBook, catchAsync(async (req, res) => {

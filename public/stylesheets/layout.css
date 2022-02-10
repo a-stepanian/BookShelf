@@ -8,8 +8,8 @@
 
 body {
     height: 100vh;
-    background-color: #252422;
-    color: #ccc5b9;
+    background-color: #ccc5b9;
+    color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -127,35 +127,39 @@ main {
 /*----------------------------------------------------------*/
 /*----- Bookshelf feature ----------------------------------*/
 footer {
+    border-top: 3px solid black;
+    background-color: rgba(235, 95, 40, 0.5);
     width: 100%;
-    flex: 0 0 150px;
+    flex: 0 0 200px;                /*150px high normal box*/
     display: flex;
-    flex-direction: column;
 }
 
 .bookshelf {
     width: 100%;
-    height: 100%;
+    height: 100%;                   /*150px high normal, same as footer*/
     display: flex;
-    align-items:flex-end;
+    align-items: center;
     overflow-x: scroll;
 }
 
 .bookContainer {
-    width: 60px;
-    height: 100px;
-    transition: 0.2s;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;                  /*100px high normal*/
+    transition: 0.2s;  
 }
 
 .bookContainer:hover {
-    width: 130px;
-    height: 130px;
+    height: 170px;
+    z-index: 1;
 }
 
 .book {
     background-color: #fffcf2;
-    height: 100%;
-    border-radius: 3px;
+    height: 100%;                   /*100px high normal*/
+    border-radius: 3px;             /*130 on hover*/
     outline: 3px solid #252422;
 }
 

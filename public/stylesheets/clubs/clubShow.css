@@ -1,69 +1,71 @@
-.coverAndDetails {
-    display: flex;
-    padding: 20px;
-    align-items: center;
+main {
+    flex-direction: column;
+    justify-content: flex-start;
 }
+
+main h1 {
+    margin: 20px 0;
+}
+
+main h1 a {
+    text-decoration: none;
+    color: #eb5e28;
+}
+
+.showContent {
+    width: 100%;
+    display: flex;
+}
+
 
 /*----------------------------------------------------------*/
 /*----- Book Cover Box -------------------------------------*/
-.coverContainer {
-    width: 34%;
+.clubInfo {
+    flex: 0 0 120px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 200px;
-}
-
-.cover {
-    max-height: 100%;
-    max-width: 100%;
-    border-radius: 5px;
-    box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.4);
-}
-
-
-/*----------------------------------------------------------*/
-/*----- Book Info Box --------------------------------------*/
-.details {
-    width: 66%;
-    border-left: 3px solid #ccc5b90c;
-    margin-left: 20px;
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.details h2 {
-    color: #eb5e28;
     font-size: 1.2em;
-    padding-bottom: 10px;
 }
 
-.details h3 {
+.clubInfo h2 {
     font-size: 1em;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
-.details a {
+.clubInfo p {
+    font-size: 0.6em;
+    padding-bottom: 5px;
+}
+
+.clubInfo a, .clubInfo form button {
     margin-top: 20px;
     border-radius: 5px;
     border: 3px solid black;
-    background-color: #ccc5b9;
+    background-color: #eb5e28;
     color: black;
     text-decoration: none;
     text-align: center;
     line-height: 1.5em;
-    width: 80px;
+    width: 120px;
     font-size: 1em;
     letter-spacing: -1.5px;
     font-weight: 900;
+    font-family: 'JetBrains Mono', monospace;
+    
 }
 
-.details a:hover {
+.clubInfo a:hover, .clubInfo form button:hover {
+    cursor: pointer;
     text-decoration: underline;
     transform: translate(-2px, -2px);
     box-shadow: 3px 3px black;
+}
+
+.clubImage {
+    flex: 1 1 auto;
+    border: 3px solid black;
+    margin: 20px;
 }
 
 @media (min-width: 768px) {
@@ -85,17 +87,17 @@
     
     /*----------------------------------------------------------*/
     /*----- Book Info Box --------------------------------------*/
-    .details {
+    .clubInfo {
         height: 300px;
         width: 300px;
         margin-left: 0;
     }
     
-    .details h2 {
+    .clubInfo h2 {
         font-size: 1.5em;
     }
     
-    .details h3 {
+    .clubInfo h3 {
         font-size: 1.2em;
     }
 }

@@ -1,129 +1,33 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 body {
-    height: 100vh;
-    background: #252422;
-    display: flex;
+    background-color: #ccc5b9;
+    color: #252422;
+}
+main {
+    padding: 50px;
     flex-direction: column;
     align-items: center;
-    font-family: 'JetBrains Mono', monospace;
-    overflow: hidden;
 }
-nav {
-    width: 100%;
-    background-color: #eb5e28;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    text-decoration: none;
-    color: black;
-}
-
-.links {
-    display: flex;
-}
-
-.links a {
-    margin: 5px;
-    border-radius: 3px;
-    border: 3px solid #252422;
-    color: #252422;
-    text-decoration: none;
+h1 {
     text-align: center;
-    line-height: 1.3em;
-    width: 120px;
-    font-size: 1.2em;
-    letter-spacing: -1.5px;
-    font-weight: 900;
-    background-color: #ccc5b9;
+    color: #eb5e28;
 }
 
-.links a:hover {
+.clubCard {
+    margin: 20px 0;
+    padding: 20px;
+    width: 90%vw;
+    border: 3px solid black;
+    border-radius: 5px;
+    background-color: rgba(235, 95, 40, 0.5);
+    color: black;
+    font-size: 1.2em;
+    font-weight: 900;
+    text-align: center;
+}
+
+.clubCard:hover, .clubCard:active {
+    color: black;
     text-decoration: underline;
     transform: translate(-2px, -2px);
     box-shadow: 3px 3px black;
-}
-
-@media (max-width: 768px) {
-    .signUpLogIn {
-        display: none;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo {
-        display: none;
-    }
-    nav {
-        justify-content: center;
-    }
-}
-main {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-main h1 {
-    margin-top: 50px;
-    text-align: center;
-    font-size: 3em;
-    color: #eb5e28;
-}
-.bookshelf {
-    width: 100%;
-    height: 150px;
-    display: flex;
-    align-items: flex-end;
-}
-.bookshelfBottom {
-    justify-content: flex-end;
-}
-.bookContainerTop {
-    animation: spread2 1s ease-out forwards;
-    display: flex;
-    align-items: flex-end;
-}
-.bookContainerBottom {
-    width: 0px;
-    animation: spread 1s ease-out forwards;
-    display: flex;
-    align-items: flex-end;
-}
-.bookContainerTop img {
-    border-radius: 3px;
-    outline: 2px solid rgba(0, 0, 0, 0.5);
-    box-shadow: -15px -15px 15px rgba(0, 0, 0, 0.5);
-}
-.bookContainerBottom img {
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    background-color:  rgba(0, 0, 0, 0.5);
-    border-radius: 3px;
-    box-shadow: -15px -15px 15px rgba(0, 0, 0, 0.5);
-}
-@keyframes spread2 {
-    0% {
-        transform: translateX(-100px);
-        width: 0px;
-    }
-    100% {
-        transform: translateX(-10px);
-        width: 80px;
-    }
-}
-@keyframes spread {
-    0% {
-        transform: translateX(100px);
-        width: 0px;
-    }
-    100% {
-        transform: translateX(-30px);
-        width: 80px;
-    }
 }

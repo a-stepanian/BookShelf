@@ -96,7 +96,6 @@ app.use('/books/:id/reviews', reviewRoutes);
 
 // Homepage
 app.get('/', (req, res) => {
-    console.log(req.session)
     res.render('home');
 });
 

@@ -1,3 +1,18 @@
+main {
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+main h1 {
+    margin: 20px 0;
+}
+
+main h1 a {
+    text-decoration: none;
+    color: #eb5e28;
+}
+
+
 .coverAndDetails {
     display: flex;
     padding: 20px;
@@ -7,7 +22,7 @@
 /*----------------------------------------------------------*/
 /*----- Book Cover Box -------------------------------------*/
 .coverContainer {
-    width: 34%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,7 +41,7 @@
 /*----------------------------------------------------------*/
 /*----- Book Info Box --------------------------------------*/
 .details {
-    width: 66%;
+    width: 50%;
     border-left: 3px solid #ccc5b90c;
     margin-left: 20px;
     padding-left: 20px;

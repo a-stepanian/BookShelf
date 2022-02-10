@@ -3,20 +3,27 @@
     <link rel="stylesheet" href="/stylesheets/clubs/clubShow.css">
 
 <%- include('../partials/styleToNav') %>
+<h1><a href="/clubs/<%=club._id%>"><%=club.clubName%></a></h1>
+<section class="showContent">
+        <aside class="clubInfo">
+            <h2>Books: <%=club.clubBooks.length%></h2>
+            <h2>Members: <%=club.clubMembers.length%></h2>
+            <p>
+            <% for (let member of club.clubMembers) { %>
+                <%=member.username%>
+            <% } %>
+            </p>
+            <a href="/clubs/<%=club._id%>/edit">Edit Club</a>
+            <a href="/clubs/<%=club._id%>/books/new">Add a Book</a>
+            <% if (currentUser) { %>
+            <form action="/clubs/<%=club._id%>/join?_method=PUT" method="POST">
+                <button>Join!</button>
+            </form>
+            <% } %>
+        </aside>
+        <aside class="clubImage"></aside>
+    </section>
 
-        <section class="coverAndDetails">
-            <div class="coverContainer">
-                <h1><%=club.clubName%></h1>
-                <h3>Members: <%=club.clubMembers.length%></h3>
-                <h3>Books: <%=club.clubBooks.length%></h3>
-            </div>
-
-            <div class="details">
-                <a href="/clubs/<%=club._id%>/edit">Edit Club</a>
-                <a href="/clubs/<%=club._id%>/books/new">Add a Book</a>
-            </div>
-        </section>
-    
     </main>
 
     <footer>
