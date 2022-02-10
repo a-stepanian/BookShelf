@@ -3,6 +3,7 @@ const router = express.Router({ mergeParams: true });  // Need this to pull id f
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
 const Book = require('../models/bookModel');
+const Club = require('../models/clubModel');
 const Review = require('../models/reviewModel');
 const { reviewSchema } = require('../schemaValidations');
 const { isLoggedIn } = require('../middleware.js')
@@ -18,24 +19,31 @@ const validateReview = (req, res, next) => {
 }
 
 router.get('/', catchAsync(async (req, res) => {
-    const book = await Book.findById(req.params.id).populate('reviews');
-    res.render('books/reviews', { book });
+    const club = await Club.findById(req.params.id)
+    const book = await Book.findById(req.params.bookId).populate('reviews');
+    let sum = 0;
+    for (let i = 0; i < book.reviews.length; i++) {
+        sum += book.reviews[i].rating;
+    }
+    let average = (sum / book.reviews.length).toFixed(1);
+    res.render('books/reviews', { club, book, average });
 }));
 
 router.post('/', isLoggedIn, validateReview, catchAsync(async (req, res) => {
-    const book = await Book.findById(req.params.id);
+    const { id, bookId } = req.params;
+    const book = await Book.findById(bookId);
     const newReview = await new Review(req.body);
     book.reviews.push(newReview);
     await newReview.save();
     await book.save();
-    res.redirect(`/books/${req.params.id}/reviews`);
+    res.redirect(`/clubs/${id}/books/${bookId}/reviews`);
 }));
 
 router.delete('/:reviewId', isLoggedIn, catchAsync(async (req, res) => {
-    const { id, reviewId } = req.params;
-    await Book.findByIdAndUpdate(id, {$pull: {reviews: reviewId} });
+    const { id, bookId, reviewId } = req.params;
+    await Book.findByIdAndUpdate(bookId, {$pull: {reviews: reviewId} });
     await Review.findByIdAndDelete(reviewId);
-    res.redirect(`/books/${id}/reviews`);
+    res.redirect(`/clubs/${id}/books/${bookId}/reviews`);
 }));
 
 module.exports = router;

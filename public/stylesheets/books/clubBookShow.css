@@ -86,6 +86,13 @@ main h3 {
     box-shadow: 3px 3px black;
 }
 
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 30px;
+    background-color: rgba(235, 95, 40, 0.5);
+}
 .back {
     padding: 10px;
     letter-spacing: -1.5px;

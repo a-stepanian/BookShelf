@@ -91,7 +91,7 @@ app.use((req, res, next) => {
 app.use('/', userRoutes);
 app.use('/clubs', clubRoutes);
 app.use('/clubs/:id/books', bookRoutes);
-app.use('/books/:id/reviews', reviewRoutes);
+app.use('/clubs/:id/books/:bookId/reviews', reviewRoutes);
 
 
 // Homepage

@@ -82,9 +82,9 @@ nav {
     text-decoration: none;
     text-align: center;
     line-height: 1.3em;
-    width: 120px;
-    font-size: 1.2em;
-    letter-spacing: -1.5px;
+    width: 80px;
+    font-size: 1em;
+    letter-spacing: -2px;
     font-weight: 900;
     background-color: #ccc5b9;
 }
@@ -95,21 +95,11 @@ nav {
     box-shadow: 3px 3px black;
 }
 
-
-/* Navbar small screen media query */
-@media (max-width: 768px) {
-    .signUpLogIn {
-        display: none;
-    }
-}
-
-/* Navbar mobile screen media query */
-@media (max-width: 480px) {
-    .logo {
-        display: none;
-    }
-    nav {
-        justify-content: center;
+@media (min-width: 400px) {
+    .links a {
+        width: 120px;
+        font-size: 1.2em;
+        letter-spacing: -1.5px;
     }
 }
 

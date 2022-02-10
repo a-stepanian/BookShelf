@@ -1,8 +1,27 @@
 <%- include('../partials/startToStyle') %>
 
     <link rel="stylesheet" href="/stylesheets/books/clubBookShow.css">
+</head>
 
-<%- include('../partials/styleToNav') %>
+<body>
+    <%- include('../partials/flash') %>
+    <nav>
+        <h1 class="logoH1"><a class="logo" href="/">BookWorm</a></h1>
+        <div class="links">
+            <% if (!currentUser) { %>
+            <a class="signUpLogIn" href="/register">Register</a>
+            <a href="/login">Sign In</a>
+            <% } else { %>
+            <a href="/logout">Sign Out</a>
+            <% } %>
+        </div>
+    </nav>
+
+<div class="breadcrumb">
+    <a class="back" href="/clubs">&#171; BookShelves</a><a class="back" href="/clubs/<%=club._id%>">&#171; <%=club.clubName%></a>
+</div>
+
+<main>
         <h2><%=book.title%></h2>
         <h3>by <%=book.author%></h3>
         <section class="coverAndDetails">
@@ -15,10 +34,10 @@
         
                 <% if (average !== 'NaN') { %>
                     <h4><span class="ratingWord">Rating: </span><%=average%>&#9734;</h4>
-                    <a href="/books/<%=book._id%>/reviews">Reviews</a>
+                    <a href="/clubs/<%=club._id%>/books/<%=book._id%>/reviews">Reviews</a>
                 <% } else { %>
                     <h3>Not yet rated...</h3>
-                <a href="/books/<%=book._id%>/reviews">Leave a review</a>
+                <a href="/clubs/<%=club._id%>/books/<%=book._id%>/reviews">Leave a review</a>
                 <% } %>
                 <a class="editButton" href="/clubs/<%=club._id%>/books/<%=book._id%>/edit">Edit</a>
             </div>
@@ -26,7 +45,6 @@
         </section>
         
     </main>
-    <a class="back" href="/clubs/<%=club._id%>">&#171; <%=club.clubName%></a>
 
     <footer>
         <div class="bookshelf">

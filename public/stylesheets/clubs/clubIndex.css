@@ -75,13 +75,6 @@ h3 {
     background-color: #ccc5b9;
 }
 
-@media (min-width: 786px) {
-    .bookImgContainer:hover {
-        width: fit-content;
-        height: 120px;
-    }    
-}
-
 .newClub {
     margin-top: 40px;
     border-radius: 5px;

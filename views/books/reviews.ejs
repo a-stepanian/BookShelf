@@ -1,8 +1,30 @@
 <%- include('../partials/startToStyle') %>
 
-    <link rel="stylesheet" href="/stylesheets/reviews.css">
+    <link rel="stylesheet" href="/stylesheets/books/reviews.css">
 
-<%- include('../partials/styleToNav') %>
+</head>
+
+<body>
+    <%- include('../partials/flash') %>
+    <nav>
+        <h1 class="logoH1"><a class="logo" href="/">BookWorm</a></h1>
+        <div class="links">
+            <% if (!currentUser) { %>
+            <a class="signUpLogIn" href="/register">Register</a>
+            <a href="/login">Sign In</a>
+            <% } else { %>
+            <a href="/logout">Sign Out</a>
+            <% } %>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a class="back" href="/clubs">&#171; BookShelves</a>
+        <a class="back" href="/clubs/<%=club._id%>">&#171; <%=club.clubName.slice(0, 8) + '...'%></a>
+        <a class="back" href="/clubs/<%=club._id%>/books/<%=book._id%>">&#171; <%=book.title.slice(0, 8) + '...'%></a>
+    </div>
+
+<main>
 
     <section class="coverAndDetails">
         <div class="coverContainer">
@@ -10,7 +32,9 @@
         </div>
         <div class="titleAndRating">
             <h2><%=book.title%></h2>
-            <h3>Rating: </h3>
+            <% if (average !== 'NaN') { %>
+                <h4><span class="ratingWord">Rating: </span><%=average%>&#9734;</h4>
+            <% } %>
         </div>
     </section>
 
@@ -19,7 +43,7 @@
             <h3><a href="/login">Sign in</a> to add a review</h3>
         <% } else { %>
         <h3>Add A Review</h3>
-        <form class="reviewForm" action="/books/<%=book._id%>/reviews" method="POST">
+        <form class="reviewForm" action="/clubs/<%=club._id%>/books/<%=book._id%>/reviews" method="POST">
             <div class="rating">
                 <label for="rating"></label>
                 <input type="range" id="rating" name="rating" min="1" max="5" step="1">
@@ -35,7 +59,7 @@
             <div class="reviewTopLine">
                 <h3>Rating: <%=book.reviews[i].rating%></h3>
                 <% if (currentUser) { %>
-                <form action="/books/<%=book._id%>/reviews/<%=book.reviews[i]._id%>?_method=DELETE" method="POST">
+                <form action="/clubs/<%=club._id%>/books/<%=book._id%>/reviews/<%=book.reviews[i]._id%>?_method=DELETE" method="POST">
                     <button class="deleteButton">Delete</button>
                 </form>
                 <% } %>
@@ -47,6 +71,7 @@
     </section>
 
     </main>
+
     <script src="/javascripts/flash.js"></script>
 </body>
 </html>

@@ -1,8 +1,28 @@
 <%- include('../partials/startToStyle') %>
 
     <link rel="stylesheet" href="/stylesheets/clubs/clubShow.css">
+</head>
 
-<%- include('../partials/styleToNav') %>
+<body>
+    <%- include('../partials/flash') %>
+    <nav>
+        <h1 class="logoH1"><a class="logo" href="/">BookWorm</a></h1>
+        <div class="links">
+            <% if (!currentUser) { %>
+            <a class="signUpLogIn" href="/register">Register</a>
+            <a href="/login">Sign In</a>
+            <% } else { %>
+            <a href="/logout">Sign Out</a>
+            <% } %>
+        </div>
+    </nav>
+    
+<div class="breadcrumb">
+    <a class="back" href="/clubs">&#171; BookShelves</a>
+</div>
+
+<main>
+
 <h1><a href="/clubs/<%=club._id%>"><%=club.clubName%></a></h1>
 <section class="showContent">
         <aside class="clubInfo">
