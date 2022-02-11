@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const Club = require('./clubModel');
 
 const BookSchema = new Schema({
+    seedTag: String,
     title: String,
     author: String,
     imageUrlM: String,
