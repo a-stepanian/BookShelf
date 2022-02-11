@@ -7,6 +7,10 @@ const Review = require('./reviewModel');
 const clubSchema = new Schema ({
     clubName: String,
     clubImgUrl: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     clubMembers: [
         {
             type: Schema.Types.ObjectId,
