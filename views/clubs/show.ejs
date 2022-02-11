@@ -24,6 +24,7 @@
 <main>
 
 <h1><a href="/clubs/<%=club._id%>"><%=club.clubName%></a></h1>
+<p>Created by: <%=club.author.username%></p>
 <section class="showContent">
         <aside class="clubInfo">
             <h2>Books: <%=club.clubBooks.length%></h2>
@@ -33,7 +34,9 @@
                 <%=member.username%>
             <% } %>
             </p>
+            <% if (currentUser && club.author.equals(currentUser._id)) { %>
             <a href="/clubs/<%=club._id%>/edit">Edit Club</a>
+            <% } %>
             <a href="/clubs/<%=club._id%>/books/new">Add a Book</a>
             <% if (currentUser) { %>
             <form action="/clubs/<%=club._id%>/join?_method=PUT" method="POST">
