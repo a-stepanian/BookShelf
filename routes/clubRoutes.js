@@ -30,7 +30,13 @@ router.post('/', isLoggedIn, catchAsync(async (req, res) => {
 
 // Club Show
 router.get('/:id', catchAsync(async (req, res) => {
-    const club = await Club.findById(req.params.id).populate('author').populate('clubBooks').populate('clubMembers');
+    const club = await Club.findById(req.params.id).populate('author').populate('clubBooks')
+        .populate({
+            path: 'clubMembers',
+            populate: {
+                path: '_id'
+            }
+        });
     res.render('clubs/show', { club });
 }));
 

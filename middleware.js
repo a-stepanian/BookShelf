@@ -1,6 +1,7 @@
 const Club = require('./models/clubModel');
 const { clubSchema, reviewSchema } = require('./schemaValidations');
 const ExpressError = require('./utils/ExpressError');
+const Review = require('./models/reviewModel');
 
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -39,4 +40,14 @@ module.exports.validateReview = (req, res, next) => {
     } else {
         next();
     }  
+}
+
+module.exports.isReviewAuthor = async (req, res, next) => {
+    const { id, bookId, reviewId } = req.params;
+    const review = await Review.findById(reviewId);
+    if (!review.author.equals(req.user._id)) {
+        req.flash('error', "You don't have permission to do that");
+        return res.redirect(`/clubs/${id}}/books/${bookId}/reviews`);
+    }
+    next();
 }

@@ -34,12 +34,15 @@
         
                 <% if (average !== 'NaN') { %>
                     <h4><span class="ratingWord">Rating: </span><%=average%>&#9734;</h4>
+                    <p>Total Ratings: <%=book.reviews.length%></p>
                     <a href="/clubs/<%=club._id%>/books/<%=book._id%>/reviews">Reviews</a>
                 <% } else { %>
                     <h3>Not yet rated...</h3>
                 <a href="/clubs/<%=club._id%>/books/<%=book._id%>/reviews">Leave a review</a>
                 <% } %>
+                <% if (currentUser && club.author.equals(currentUser._id)) { %>
                 <a class="editButton" href="/clubs/<%=club._id%>/books/<%=book._id%>/edit">Edit</a>
+                <% } %>
             </div>
 
         </section>

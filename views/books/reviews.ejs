@@ -58,7 +58,8 @@
         <div class="review">
             <div class="reviewTopLine">
                 <h3>Rating: <%=book.reviews[i].rating%></h3>
-                <% if (currentUser) { %>
+                <h4>By <%=book.reviews[i].author.username%></h4>
+                <% if (currentUser && book.reviews[i].author.equals(currentUser._id)) { %>
                 <form action="/clubs/<%=club._id%>/books/<%=book._id%>/reviews/<%=book.reviews[i]._id%>?_method=DELETE" method="POST">
                     <button class="deleteButton">Delete</button>
                 </form>
