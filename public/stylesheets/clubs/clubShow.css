@@ -16,10 +16,19 @@
 main {
     flex-direction: column;
     justify-content: flex-start;
+    background-position: center;
+    background-size: cover;
 }
 
-main h1 {
-    margin: 20px 0;
+.infoBox {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 main h1 a {
@@ -27,35 +36,12 @@ main h1 a {
     color: #eb5e28;
 }
 
-.showContent {
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
-
-
-/*----------------------------------------------------------*/
-/*----- Book Cover Box -------------------------------------*/
-.clubInfo {
-    flex: 0 0 120px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    font-size: 1.2em;
-}
-
-.clubInfo h2 {
+main p {
     font-size: 1em;
-    padding-bottom: 5px;
 }
 
-.clubInfo p {
-    font-size: 0.6em;
-    padding-bottom: 5px;
-}
-
-.clubInfo a, .clubInfo form button {
-    margin-top: 20px;
+main .button, main form button {
+    margin-top: 10px;
     border-radius: 5px;
     border: 3px solid black;
     background-color: #eb5e28;
@@ -71,58 +57,14 @@ main h1 a {
     
 }
 
-.clubInfo a:hover, .clubInfo form button:hover {
+main .button:hover, main form button:hover {
     cursor: pointer;
     text-decoration: underline;
     transform: translate(-2px, -2px);
     box-shadow: 3px 3px black;
 }
 
-.clubImage {
-    flex: 1 1 auto;
-    margin: 20px;
-}
-.clubImage img {
-    border: 3px solid black;
-    border-radius: 5px;
-    max-height: 100%;
-    max-width: 100%;
-    /* object-position: center;
-    object-fit: cover; */
-}
-
-
 
 @media (min-width: 768px) {
-    .coverContainer {
-        width: 300px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 300px;
-    }
-    
-    .cover {
-        max-height: 100%;
-        max-width: 100%;
-        border-radius: 5px;
-        box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.4);
-    }
-    
-    
-    /*----------------------------------------------------------*/
-    /*----- Book Info Box --------------------------------------*/
-    .clubInfo {
-        height: 300px;
-        width: 300px;
-        margin-left: 0;
-    }
-    
-    .clubInfo h2 {
-        font-size: 1.5em;
-    }
-    
-    .clubInfo h3 {
-        font-size: 1.2em;
-    }
+
 }
