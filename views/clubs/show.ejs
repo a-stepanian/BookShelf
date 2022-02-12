@@ -27,13 +27,10 @@
 <p>Created by: <%=club.author.username%></p>
 <section class="showContent">
         <aside class="clubInfo">
-            <h2>Books: <%=club.clubBooks.length%></h2>
-            <h2>Members: <%=club.clubMembers.length%></h2>
-            <p>
-            <% for (let member of club.clubMembers) { %>
-                <%=member.username%>
-            <% } %>
-            </p>
+            <div class="titleBox">
+                <h2>Books: <%=club.clubBooks.length%></h2>
+                <h2>Members: <%=club.clubMembers.length%></h2>
+            </div>
             <% if (currentUser && club.author.equals(currentUser._id)) { %>
             <a href="/clubs/<%=club._id%>/edit">Edit Club</a>
             <% } %>

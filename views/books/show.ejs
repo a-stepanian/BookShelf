@@ -22,8 +22,10 @@
 </div>
 
 <main>
+    <div class="titleBox">
         <h2><%=book.title%></h2>
         <h3>by <%=book.author%></h3>
+    </div>
         <section class="coverAndDetails">
             
             <div class="coverContainer">
@@ -34,10 +36,10 @@
         
                 <% if (average !== 'NaN') { %>
                     <h4><span class="ratingWord">Rating: </span><%=average%>&#9734;</h4>
-                    <p>Total Ratings: <%=book.reviews.length%></p>
-                    <a href="/clubs/<%=club._id%>/books/<%=book._id%>/reviews">Reviews</a>
+                    <p>Reviews: <strong><%=book.reviews.length%></strong></p>
+                    <a href="/clubs/<%=club._id%>/books/<%=book._id%>/reviews">Reviews &#187;</a>
                 <% } else { %>
-                    <h3>Not yet rated...</h3>
+                    <p>Not yet rated...</p>
                 <a href="/clubs/<%=club._id%>/books/<%=book._id%>/reviews">Leave a review</a>
                 <% } %>
                 <% if (currentUser && club.author.equals(currentUser._id)) { %>

@@ -186,9 +186,7 @@ const deleteAllExceptUsers = async () => {
     await Club.deleteMany({});
     await Book.deleteMany({});
     await Review.deleteMany({});
-    console.log('deleted all the stuff');
 }
-deleteAllExceptUsers();
 
 //----- Create mystery club seeded with books with reviews --------------//
 const seedMysteryClub = async () => {
@@ -202,7 +200,6 @@ const seedMysteryClub = async () => {
         })
         await review.save();
     }
-    console.log('created 24 reviews')
 
     //create 8 books
     for (let i = 0; i < 8; i++) {
@@ -229,7 +226,6 @@ const seedMysteryClub = async () => {
         });
         await book.save()
     }
-    console.log('created 8 books')
 
     //push 3 reviews into each of the 8 book reviews arrays
     const books = await Book.find({seedTag: 'mystery'});
@@ -242,7 +238,6 @@ const seedMysteryClub = async () => {
         }
         await books[i].save();
     }
-    console.log('pushed 3 unique reviews into each of the 9 book reviews arrays')
 
     //create 1 club
     const club = new Club({
@@ -253,22 +248,13 @@ const seedMysteryClub = async () => {
         clubBooks: []
     });
     await club.save();
-    console.log('made 1 club')
-
 
     //push 8 books into club books array
     for (let i = 0; i < 8; i++) {
         club.clubBooks.push(books[i]);
     }
     await club.save();
-    console.log('pushed 8 books into the club books array')
-
-
-    console.log('************************************')
-    console.log('***MYSTERY CLUB SEEDING COMPLETE****')
-    console.log('************************************')
 }
-seedMysteryClub();
 
 //----- Create bookworm club seeded with books with reviews -------------//
 const seedBookWormClub = async () => {
@@ -282,7 +268,6 @@ const seedBookWormClub = async () => {
         })
         await review.save()
     }
-    console.log('created 20 reviews')
 
     //create 5 books
     for (let i = 0; i < 5; i++) {
@@ -309,7 +294,6 @@ const seedBookWormClub = async () => {
         });
         await book.save()
     }
-    console.log('created 5 books')
 
      //push 4 reviews into each of the 5 book reviews arrays
      const books = await Book.find({seedTag: 'bookworm'});
@@ -322,7 +306,6 @@ const seedBookWormClub = async () => {
          }
          await books[i].save();
      }
-     console.log("pushed 4 unique reviews into each of the 5 books' reviews arrays")
  
      //create 1 club
      const club = new Club({
@@ -333,22 +316,13 @@ const seedBookWormClub = async () => {
          clubBooks: []
      });
      await club.save();
-     console.log('made 1 club')
- 
  
      //push 9 books into club books array  
      for (let i = 0; i < 9; i++) {
          club.clubBooks.push(books[i]);
      }
      await club.save();
-     console.log('pushed 9 books into the club books array')
- 
- 
-     console.log('************************************')
-     console.log('***BOOKWORM CLUB SEEDING COMPLETE***')
-     console.log('************************************')
  }
- seedBookWormClub();
 
 //----- Create shire club seeded with books with reviews ----------------//
 const seedShireClub = async () => {
@@ -362,7 +336,6 @@ const seedShireClub = async () => {
         })
         await review.save()
     }
-    console.log('created 18 reviews')
 
     //create 9 books
     for (let i = 0; i < 9; i++) {
@@ -389,7 +362,6 @@ const seedShireClub = async () => {
         });
         await book.save()
     }
-    console.log('created 9 books')
 
     //push 2 reviews into each of the 9 book reviews arrays
     const books = await Book.find({seedTag: 'theShire'});
@@ -402,7 +374,6 @@ const seedShireClub = async () => {
         }
         await books[i].save();
     }
-    console.log("pushed 2 unique reviews into each of the 9 books' reviews arrays")
 
     //create 1 club
     const club = new Club({
@@ -413,19 +384,31 @@ const seedShireClub = async () => {
         clubBooks: []
     });
     await club.save();
-    console.log('made 1 club')
-
 
     //push 9 books into club books array  
     for (let i = 0; i < 9; i++) {
         club.clubBooks.push(books[i]);
     }
     await club.save();
-    console.log('pushed 9 books into the club books array')
-
-
-    console.log('************************************')
-    console.log('****SHIRE CLUB SEEDING COMPLETE*****')
-    console.log('************************************')
 }
-seedShireClub();
+
+const seedDB = async () => {
+    console.log('1) DELETING ALL CLUBS/BOOKS/REVIEWS...')
+    await deleteAllExceptUsers();
+    console.log('COMPLETE')
+    console.log('2) SEEDING MYSTERY CLUB...')
+    await seedMysteryClub();
+    console.log('COMPLETE')
+    console.log('3) SEEDING BOOKWORM CLUB...')
+    await seedBookWormClub();
+    console.log('COMPLETE')
+    console.log('4) SEEDING SHIRE CLUB...')
+    await seedShireClub();
+    console.log('*************************************')
+    console.log('*                                   *')
+    console.log('*     DATABASE SEEDING COMPLETE     *')
+    console.log('*                                   *')
+    console.log('*************************************')
+}
+
+seedDB();
