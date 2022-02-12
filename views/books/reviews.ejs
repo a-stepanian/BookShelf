@@ -57,13 +57,17 @@
         <% for (let i = book.reviews.length -1; i >= 0; i--) { %>
         <div class="review">
             <div class="reviewTopLine">
-                <h3>Rating: <%=book.reviews[i].rating%></h3>
-                <h4>By <%=book.reviews[i].author.username%></h4>
+                <p><%=book.reviews[i].author.username%></p>
                 <% if (currentUser && book.reviews[i].author.equals(currentUser._id)) { %>
-                <form action="/clubs/<%=club._id%>/books/<%=book._id%>/reviews/<%=book.reviews[i]._id%>?_method=DELETE" method="POST">
-                    <button class="deleteButton">Delete</button>
-                </form>
+                    <form action="/clubs/<%=club._id%>/books/<%=book._id%>/reviews/<%=book.reviews[i]._id%>?_method=DELETE" method="POST">
+                        <button class="deleteButton">Delete</button>
+                    </form>
                 <% } %>
+                <div class="rating">
+                    <% for (let j = 0; j < book.reviews[i].rating; j++) { %>
+                    <span class="star">&#9733;</span>
+                    <% } %>
+                </div>
             </div>
             <p><strong><%=book.reviews[i].comments%></strong></p>
         </div>
