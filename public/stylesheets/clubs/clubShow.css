@@ -1,9 +1,14 @@
+body {
+    background-position: center;
+    background-size: cover;
+}
+
 .breadcrumb {
     display: flex;
     align-items: center;
     width: 100%;
     min-height: 30px;
-    background-color: rgba(235, 95, 40, 0.5);
+    background-color: rgb(255, 165, 130);
 }
 .back {
     padding: 10px;
@@ -17,8 +22,7 @@ main {
     flex-direction: column;
     justify-content: flex-start;
     background-position: center;
-    background-size: cover;
-}
+    background-size: cover;}
 
 .infoBox {
     margin-top: 10px;
@@ -66,5 +70,11 @@ main .button:hover, main form button:hover {
 
 
 @media (min-width: 768px) {
-
+    .breadcrumb {
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #eb5e28;
+    }
+    .breadcrumb a {
+        color: #eb5e28;
+    }
 }

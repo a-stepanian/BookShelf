@@ -119,7 +119,7 @@ main {
 /*----- Bookshelf feature ----------------------------------*/
 footer {
     border-top: 3px solid black;
-    background-color: rgba(235, 95, 40, 0.5);
+    background-color: rgb(255, 165, 130);
     width: 100%;
     flex: 0 0 200px;                /*150px high normal box*/
     display: flex;
@@ -159,13 +159,20 @@ footer {
 @media (min-width: 768px) {
     footer {
         flex: 0 0 250px;
+        border-top: none;
+        background-color: rgba(0, 0, 0, 0.3);
     }
-    
+
+    .bookshelf {
+        align-items: flex-end;
+    }
+
     .bookContainer {
         width: 80px;
         height: 200px;
     }
-    
+
+
     .bookContainer:hover {
         width: 150px;
         height: 230px;

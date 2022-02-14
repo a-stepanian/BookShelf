@@ -111,6 +111,14 @@ main h3 {
 
 
 @media (min-width: 768px) {
+    .breadcrumb {
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #eb5e28;
+    }
+    .breadcrumb a {
+        color: #eb5e28;
+    }
+
     .coverContainer {
         width: 300px;
         display: flex;
@@ -129,6 +137,11 @@ main h3 {
     
     /*----------------------------------------------------------*/
     /*----- Book Info Box --------------------------------------*/
+    .coverAndDetails {
+        justify-content: center;
+        padding: 0 20px;
+    }
+
     .details {
         height: 300px;
         width: 300px;
@@ -141,5 +154,9 @@ main h3 {
     
     .details h3 {
         font-size: 1.2em;
+    }
+
+    footer {
+        background-color: transparent;
     }
 }

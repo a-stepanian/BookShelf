@@ -3,6 +3,7 @@
 main {
     background-color: #403d39;
     flex-direction: column;
+    overflow: hidden;
 }
 
 
