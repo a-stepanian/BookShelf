@@ -1,5 +1,5 @@
 const Club = require('./models/clubModel');
-const { clubSchema, reviewSchema } = require('./schemaValidations');
+const { clubSchema, bookSchema, reviewSchema } = require('./schemaValidations');
 const ExpressError = require('./utils/ExpressError');
 const Review = require('./models/reviewModel');
 
@@ -24,6 +24,16 @@ module.exports.isAuthor = async (req, res, next) => {
 
 module.exports.validateClub = (req, res, next) => {
     const { error } = clubSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }
+}
+
+module.exports.validateBook = (req, res, next) => {
+    const { error } = bookSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)
