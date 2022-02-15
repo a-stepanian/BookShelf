@@ -22,8 +22,38 @@ const reviewAuthors = [
     '6206ba69020d1243ee78dd90'
 ];
 
-//24 reviews
+//100 reviews
 const reviewArray = [
+    {
+        'rating' : 4,
+        'comments' : 'Really enjoyed the book.  I will definitely read more from this author.',
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 5,
+        'comments' : 'Amazing!!!',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'it was pretty good',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 3,
+        'comments' : "While I can see why many people like this book, it just wasn't for me.  Might give it another chance in the future.",
+        'author' : reviewAuthors[3]
+    },
+    {
+        'rating' : 5,
+        'comments' : 'This just might be the single best book I have ever read.',
+        'author' : reviewAuthors[4]
+    },
+    {
+        'rating' : 5,
+        'comments' : "Excellent plot, dynamic characters, engaging read... what's not to love!?",
+        'author' : reviewAuthors[5]
+    },
     {
         'rating' : 4,
         'comments' : 'Really enjoyed the book.  I will definitely read more from this author.',
@@ -130,6 +160,356 @@ const reviewArray = [
         'author' : reviewAuthors[2]
     },
     {
+        'rating' : 5,
+        'comments' : "Stop reading this comment and read this book!",
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 5,
+        'comments' : 'Flawless book.  Will be buying copies for all of my friends and family members.',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'I really liked this book.',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'not my cup of tea',
+        'author' : reviewAuthors[3]
+    },
+    {
+        'rating' : 2,
+        'comments' : "After trying to get into this series for years, I just can't seem to get through this book.  Too slow!",
+        'author' : reviewAuthors[4]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'I liked this book.',
+        'author' : reviewAuthors[5]
+    },
+    {
+        'rating' : 5,
+        'comments' : 'Amazing!!!',
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Solid read.  I highly recommend it!',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'not my cup of tea',
+        'author' : reviewAuthors[5]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'I liked this book.',
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Got this book as a gift.  Excellent read, will check out more from this author!',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'it was pretty good',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 3,
+        'comments' : "While I can see why many people like this book, it just wasn't for me.  Might give it another chance in the future.",
+        'author' : reviewAuthors[3]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Really enjoyed the book.  I will definitely read more from this author.',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'WOW!  Where do I begin!?  It was a fantastic read, the only thing keeping it from being a 5 star novel was that it was too short!!!',
+        'author' : reviewAuthors[3]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'I just thought it was average.',
+        'author' : reviewAuthors[4]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'not my cup of tea',
+        'author' : reviewAuthors[5]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'I liked this book.',
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Got this book as a gift.  Excellent read, will check out more from this author!',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'it was pretty good',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 3,
+        'comments' : "While I can see why many people like this book, it just wasn't for me.  Might give it another chance in the future.",
+        'author' : reviewAuthors[3]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'meh',
+        'author' : reviewAuthors[4]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'just...ok',
+        'author' : reviewAuthors[5]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Really enjoyed the book.  I will definitely read more from this author.',
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 5,
+        'comments' : 'Amazing!!!',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'it was pretty good',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 3,
+        'comments' : "While I can see why many people like this book, it just wasn't for me.  Might give it another chance in the future.",
+        'author' : reviewAuthors[3]
+    },
+    {
+        'rating' : 5,
+        'comments' : 'This just might be the single best book I have ever read.',
+        'author' : reviewAuthors[4]
+    },
+    {
+        'rating' : 5,
+        'comments' : "Excellent plot, dynamic characters, engaging read... what's not to love!?",
+        'author' : reviewAuthors[5]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Really enjoyed the book.  I will definitely read more from this author.',
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 5,
+        'comments' : 'Amazing!!!',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'it was pretty good',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 3,
+        'comments' : "While I can see why many people like this book, it just wasn't for me.  Might give it another chance in the future.",
+        'author' : reviewAuthors[3]
+    },
+    {
+        'rating' : 5,
+        'comments' : 'This just might be the single best book I have ever read.',
+        'author' : reviewAuthors[4]
+    },
+    {
+        'rating' : 5,
+        'comments' : "Excellent plot, dynamic characters, engaging read... what's not to love!?",
+        'author' : reviewAuthors[5]
+    },
+    {
+        'rating' : 5,
+        'comments' : "Stop reading this comment and read this book!",
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 5,
+        'comments' : 'Flawless book.  Will be buying copies for all of my friends and family members.',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'I really liked this book.',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'not my cup of tea',
+        'author' : reviewAuthors[3]
+    },
+    {
+        'rating' : 2,
+        'comments' : "After trying to get into this series for years, I just can't seem to get through this book.  Too slow!",
+        'author' : reviewAuthors[4]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'I liked this book.',
+        'author' : reviewAuthors[5]
+    },
+    {
+        'rating' : 5,
+        'comments' : 'Amazing!!!',
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Solid read.  I highly recommend it!',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Really enjoyed the book.  I will definitely read more from this author.',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'WOW!  Where do I begin!?  It was a fantastic read, the only thing keeping it from being a 5 star novel was that it was too short!!!',
+        'author' : reviewAuthors[3]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'I just thought it was average.',
+        'author' : reviewAuthors[4]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'not my cup of tea',
+        'author' : reviewAuthors[5]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'I liked this book.',
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Got this book as a gift.  Excellent read, will check out more from this author!',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'it was pretty good',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 5,
+        'comments' : "Stop reading this comment and read this book!",
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 5,
+        'comments' : 'Flawless book.  Will be buying copies for all of my friends and family members.',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'I really liked this book.',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'not my cup of tea',
+        'author' : reviewAuthors[3]
+    },
+    {
+        'rating' : 2,
+        'comments' : "After trying to get into this series for years, I just can't seem to get through this book.  Too slow!",
+        'author' : reviewAuthors[4]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'I liked this book.',
+        'author' : reviewAuthors[5]
+    },
+    {
+        'rating' : 5,
+        'comments' : 'Amazing!!!',
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Solid read.  I highly recommend it!',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'not my cup of tea',
+        'author' : reviewAuthors[5]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'I liked this book.',
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Got this book as a gift.  Excellent read, will check out more from this author!',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'it was pretty good',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 3,
+        'comments' : "While I can see why many people like this book, it just wasn't for me.  Might give it another chance in the future.",
+        'author' : reviewAuthors[3]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Really enjoyed the book.  I will definitely read more from this author.',
+        'author' : reviewAuthors[2]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'WOW!  Where do I begin!?  It was a fantastic read, the only thing keeping it from being a 5 star novel was that it was too short!!!',
+        'author' : reviewAuthors[3]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'I just thought it was average.',
+        'author' : reviewAuthors[4]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'not my cup of tea',
+        'author' : reviewAuthors[5]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'I liked this book.',
+        'author' : reviewAuthors[0]
+    },
+    {
+        'rating' : 4,
+        'comments' : 'Got this book as a gift.  Excellent read, will check out more from this author!',
+        'author' : reviewAuthors[1]
+    },
+    {
+        'rating' : 3,
+        'comments' : 'it was pretty good',
+        'author' : reviewAuthors[2]
+    },
+    {
         'rating' : 3,
         'comments' : "While I can see why many people like this book, it just wasn't for me.  Might give it another chance in the future.",
         'author' : reviewAuthors[3]
@@ -146,7 +526,7 @@ const reviewArray = [
     }
 ]
 
-// 8 mystery books
+// mystery books
 const mysteryBooks = [
     'murder on the orient express',
     'death on the nile',
@@ -156,18 +536,41 @@ const mysteryBooks = [
     'the murder of roger ackroyd',
     'and then there were none',
     'the hound of the baskervilles',
+    'the murder at the vicarage',
+    'the a.b.c. murders',
+    'peril at end house',
+    'lord edgware dies',
+    'a murder is announced',
+    'the secret of chimneys',
+    'the mysterious affair at styles',
+    'the murder on the links',
+    'a study in scarlet',
+    'the adventures of sherlock holmes',
+    'the moonstone',
+    'the deep blue good-by',
+    'the man in the brown suit',
+    'murder in mesopotamia',
+    'endless night',
+    'the secret adversary',
+    'poirot investigates',
+    'the mystery of the blue train',
+    'the seven dials mystery'
 ]
 
-// 5 modern books
+// modern books
 const bookWormBooks = [
     'The Curious Incident Of The Dog In The Night-Time',
     'Ready Player One',
     'Anxious People',
     'World War Z',
-    'Devil in the White City'
+    'Devil in the White City',
+    'The Untethered Soul',
+    'The Book Thief',
+    'The Midnight Library',
+
 ]
 
-// 9 fantasy books
+// fantasy books
 const theShireBooks = [
     'The Hobbit',
     'Lord of the Rings',
@@ -177,7 +580,21 @@ const theShireBooks = [
     'A Clash of Kings',
     'A Storm of Swords',
     'A Feast for Crows',
-    'A Dance With Dragons'
+    'A Dance With Dragons',
+    'The Dragon Reborn',
+    'The Shadow Rising',
+    'Lord of Chaos',
+    'A Crown of Swords',
+    'The Path of Daggers',
+    "Winter's Heart",
+    'Crossroads of Twilight',
+    'The Final Empire',
+    'The Well of Ascension',
+    'The Hero of Ages',
+    'The Way of Kings',
+    'Words of Radiance',
+    'Oathbringer',
+    'Rhythm of War'
 ]
 
 
@@ -190,8 +607,8 @@ const deleteAllExceptUsers = async () => {
 
 //----- Create mystery club seeded with books with reviews --------------//
 const seedMysteryClub = async () => {
-    //create 24 reviews
-    for (let i = 0; i < 24; i++) {
+    //create reviews
+    for (let i = 0; i < Math.floor(reviewArray.length / mysteryBooks.length) * mysteryBooks.length ; i++) {
         const review = new Review({
             rating: reviewArray[i].rating,
             comments: reviewArray[i].comments,
@@ -201,8 +618,8 @@ const seedMysteryClub = async () => {
         await review.save();
     }
 
-    //create 8 books
-    for (let i = 0; i < 8; i++) {
+    //create books
+    for (let i = 0; i < mysteryBooks.length; i++) {
         const bookTitle = mysteryBooks[i];
         const response = await axios.get(`http://openlibrary.org/search.json?q=${bookTitle}`);
         let author = '';
@@ -231,8 +648,8 @@ const seedMysteryClub = async () => {
     const books = await Book.find({seedTag: 'mystery'});
     const reviews = await Review.find({seedTag: 'mystery'});
     let counter = 0
-    for (let i = 0; i < 8; i++) {
-        for (let j = 0; j < 3; j++) {
+    for (let i = 0; i < mysteryBooks.length; i++) {
+        for (let j = 0; j < (reviews.length / mysteryBooks.length); j++) {
             books[i].reviews.push(reviews[counter]);
             counter++;
         }
@@ -250,7 +667,7 @@ const seedMysteryClub = async () => {
     await club.save();
 
     //push 8 books into club books array
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < mysteryBooks.length; i++) {
         club.clubBooks.push(books[i]);
     }
     await club.save();
@@ -258,8 +675,8 @@ const seedMysteryClub = async () => {
 
 //----- Create bookworm club seeded with books with reviews -------------//
 const seedBookWormClub = async () => {
-    //create 20 reviews
-    for (let i = 0; i < 20; i++) {
+    //create reviews
+    for (let i = 0; i < Math.floor(reviewArray.length / bookWormBooks.length) * bookWormBooks.length ; i++) {
         const review = new Review({
             rating: reviewArray[i].rating,
             comments: reviewArray[i].comments,
@@ -269,8 +686,8 @@ const seedBookWormClub = async () => {
         await review.save()
     }
 
-    //create 5 books
-    for (let i = 0; i < 5; i++) {
+    //create books
+    for (let i = 0; i < bookWormBooks.length; i++) {
         const bookTitle = bookWormBooks[i];
         const response = await axios.get(`http://openlibrary.org/search.json?q=${bookTitle}`);
         let author = '';
@@ -295,12 +712,12 @@ const seedBookWormClub = async () => {
         await book.save()
     }
 
-     //push 4 reviews into each of the 5 book reviews arrays
+     //push reviews into each of the books' reviews arrays
      const books = await Book.find({seedTag: 'bookworm'});
      const reviews = await Review.find({seedTag: 'bookworm'});
      let counter = 0
-     for (let i = 0; i < 5; i++) {
-         for (let j = 0; j < 4; j++) {
+     for (let i = 0; i < bookWormBooks.length; i++) {
+         for (let j = 0; j < (reviews.length / bookWormBooks.length); j++) {
              books[i].reviews.push(reviews[counter]);
              counter++;
          }
@@ -317,8 +734,8 @@ const seedBookWormClub = async () => {
      });
      await club.save();
  
-     //push 9 books into club books array  
-     for (let i = 0; i < 9; i++) {
+     //push books into club's books array  
+     for (let i = 0; i < bookWormBooks.length; i++) {
          club.clubBooks.push(books[i]);
      }
      await club.save();
@@ -326,8 +743,8 @@ const seedBookWormClub = async () => {
 
 //----- Create shire club seeded with books with reviews ----------------//
 const seedShireClub = async () => {
-    //create 18 reviews
-    for (let i = 0; i < 18; i++) {
+    //create fantasy reviews
+    for (let i = 0; i < Math.floor(reviewArray.length / theShireBooks.length) * theShireBooks.length ; i++) {
         const review = new Review({
             rating: reviewArray[i].rating,
             comments: reviewArray[i].comments,
@@ -337,8 +754,9 @@ const seedShireClub = async () => {
         await review.save()
     }
 
-    //create 9 books
-    for (let i = 0; i < 9; i++) {
+    //create fantasy books
+
+    for (let i = 0; i < theShireBooks.length; i++) {
         const bookTitle = theShireBooks[i];
         const response = await axios.get(`http://openlibrary.org/search.json?q=${bookTitle}`);
         let author = '';
@@ -363,12 +781,12 @@ const seedShireClub = async () => {
         await book.save()
     }
 
-    //push 2 reviews into each of the 9 book reviews arrays
+    //push reviews into books' reviews arrays
     const books = await Book.find({seedTag: 'theShire'});
     const reviews = await Review.find({seedTag: 'theShire'});
     let counter = 0
-    for (let i = 0; i < 9; i++) {
-        for (let j = 0; j < 2; j++) {
+    for (let i = 0; i < theShireBooks.length; i++) {
+        for (let j = 0; j < (reviews.length / theShireBooks.length); j++) {
             books[i].reviews.push(reviews[counter]);
             counter++;
         }
@@ -385,8 +803,8 @@ const seedShireClub = async () => {
     });
     await club.save();
 
-    //push 9 books into club books array  
-    for (let i = 0; i < 9; i++) {
+    //push books into club books array  
+    for (let i = 0; i < theShireBooks.length; i++) {
         club.clubBooks.push(books[i]);
     }
     await club.save();
