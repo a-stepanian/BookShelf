@@ -35,13 +35,10 @@ module.exports.new = async (req, res) => {
     }
     //utilize the cover_i code to create image urls
     const imageUrlM = `https://covers.openlibrary.org/b/id/${coverImageCode}-M.jpg`;
-    const imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
-    const book = new Book({title, author, imageUrlM, imageUrlL});
+    const book = new Book({title, author, imageUrlM});
     foundClub.clubBooks.push(book);
     await book.save();
     await foundClub.save();
-    console.log(foundClub._id)
-    console.log(book._id)
     res.redirect(`/clubs/${foundClub._id}/books/${book._id}`);
 }
 

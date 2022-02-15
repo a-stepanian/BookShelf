@@ -214,14 +214,12 @@ const seedMysteryClub = async () => {
         if (response.data.docs[0].title) { title = response.data.docs[0].title }
         if (response.data.docs[0].cover_i) { coverImageCode = response.data.docs[0].cover_i }        
         let imageUrlM = `https://covers.openlibrary.org/b/id/${coverImageCode}-M.jpg`;
-        let imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
 
         const book = new Book({
             title,
             seedTag,
             author,
             imageUrlM,
-            imageUrlL,
             reviews
         });
         await book.save()
@@ -282,14 +280,12 @@ const seedBookWormClub = async () => {
         if (response.data.docs[0].title) { title = response.data.docs[0].title }
         if (response.data.docs[0].cover_i) { coverImageCode = response.data.docs[0].cover_i }        
         let imageUrlM = `https://covers.openlibrary.org/b/id/${coverImageCode}-M.jpg`;
-        let imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
 
         const book = new Book({
             title,
             seedTag,
             author,
             imageUrlM,
-            imageUrlL,
             reviews
         });
         await book.save()
@@ -350,14 +346,12 @@ const seedShireClub = async () => {
         if (response.data.docs[0].title) { title = response.data.docs[0].title }
         if (response.data.docs[0].cover_i) { coverImageCode = response.data.docs[0].cover_i }        
         let imageUrlM = `https://covers.openlibrary.org/b/id/${coverImageCode}-M.jpg`;
-        let imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
 
         const book = new Book({
             title,
             seedTag,
             author,
             imageUrlM,
-            imageUrlL,
             reviews
         });
         await book.save()

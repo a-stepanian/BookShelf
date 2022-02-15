@@ -18,7 +18,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/userModel');
 const mongoSanitize = require('express-mongo-sanitize');
-
+const helmet = require('helmet');
 
 const app = express();
 
@@ -54,8 +54,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 
-//----- Security to prevent users using mongo query symbols ------------//
-app.use(mongoSanitize());
+//----- Prepare for production -----------------------------------------//
+app.use(mongoSanitize({
+    replaceWith: '_'
+}))
 
 
 //----- Set up session (for flash/auth) --------------------------------//
@@ -76,6 +78,30 @@ app.use(session(sessionConfig));
 
 //----- Set up flash ---------------------------------------------------//
 app.use(flash());
+
+
+//----- Prepare for production 2 ---------------------------------------//
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: [],
+            connectSrc: ["'self'"],
+            scriptSrc: ["'unsafe-inline'", "'self'"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com/"],
+            workerSrc: ["'self'", "blob:"],
+            objectSrc: [],
+            imgSrc: [
+                "'self'",
+                "blob:",
+                "data:",
+                "https://covers.openlibrary.org/b/id/",
+                "https://images.unsplash.com/"
+            ],
+            fontSrc: ["'self'", "https://fonts.gstatic.com/" ]
+        }
+    })
+);
+
 
 
 //----- Set up passport ------------------------------------------------//
