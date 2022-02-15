@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
 const Review = require('./reviewModel');
 const Schema = mongoose.Schema;
-const Club = require('./clubModel');
 
 const BookSchema = new Schema({
     seedTag: String,
     title: String,
     author: String,
     imageUrlM: String,
-    imageUrlL: String,
     reviews: [
         {
             type: Schema.Types.ObjectId,
