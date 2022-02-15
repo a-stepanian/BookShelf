@@ -9,6 +9,8 @@
 <body>
     <h1>Error</h1>
     <h4 class="alert-heading"><%=err.message%></h4>
-            <p><%= err.stack %></p>
+    <% if (process.env.NODE_ENV !== "production) { %>
+        <p><%= err.stack %></p>
+    <% } %>
 </body>
 </html>

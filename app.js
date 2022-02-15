@@ -17,6 +17,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/userModel');
+const mongoSanitize = require('express-mongo-sanitize');
 
 
 const app = express();
@@ -53,13 +54,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 
+//----- Security to prevent users using mongo query symbols ------------//
+app.use(mongoSanitize());
+
+
 //----- Set up session (for flash/auth) --------------------------------//
 const sessionConfig = {
+    name: 'thisIsSessionName',
     secret: 'thisisahorriblesecretandneedstobebetter!',
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // secure: true,
         expires: Date.now() + 1000*60*60*24*7,
         maxAge: 1000*60*60*24*7
     }
