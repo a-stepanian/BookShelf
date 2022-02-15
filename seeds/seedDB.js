@@ -528,74 +528,54 @@ const reviewArray = [
 
 // mystery books
 const mysteryBooks = [
-    'murder on the orient express',
-    'death on the nile',
     'gone girl',
-    'shutter island',
+    'the secret of chimneys',
     'the maltese falcon',
-    'the murder of roger ackroyd',
-    'and then there were none',
+    'the mysterious affair at styles',
     'the hound of the baskervilles',
     'the murder at the vicarage',
+    'a study in scarlet',
+    'the moonstone',
+    'the murder of roger ackroyd',
+    'the adventures of sherlock holmes',
+    'the murder on the links',
+    'and then there were none',
+    'the mystery of the blue train',
     'the a.b.c. murders',
     'peril at end house',
     'lord edgware dies',
     'a murder is announced',
-    'the secret of chimneys',
-    'the mysterious affair at styles',
-    'the murder on the links',
-    'a study in scarlet',
-    'the adventures of sherlock holmes',
-    'the moonstone',
+    'murder on the orient express',
     'the deep blue good-by',
-    'the man in the brown suit',
-    'murder in mesopotamia',
     'endless night',
     'the secret adversary',
     'poirot investigates',
-    'the mystery of the blue train',
     'the seven dials mystery'
+]
+
+// chicago books
+const chicagoBooks = [
+    'Devil in the White City',
+    'The Fifth Floor',
+    '47th Street Black',
+    'Water for Elephants',
+    'Anxious People',
+    'Divine Days',
+    'The Curious Incident Of The Dog In The Night-Time',
+    'The Midnight Library',
+    'The Untethered Soul',
+    'Animal Farm',
+    'Ready Player One',
+    'The Godfather'
 ]
 
 // modern books
 const bookWormBooks = [
-    'The Curious Incident Of The Dog In The Night-Time',
-    'Ready Player One',
-    'Anxious People',
     'World War Z',
-    'Devil in the White City',
-    'The Untethered Soul',
-    'The Book Thief',
-    'The Midnight Library',
-
+    'The Book Thief'
 ]
 
-// fantasy books
-const theShireBooks = [
-    'The Hobbit',
-    'Lord of the Rings',
-    'The Two Towers',
-    'Return of the King',
-    'A Game of Thrones',
-    'A Clash of Kings',
-    'A Storm of Swords',
-    'A Feast for Crows',
-    'A Dance With Dragons',
-    'The Dragon Reborn',
-    'The Shadow Rising',
-    'Lord of Chaos',
-    'A Crown of Swords',
-    'The Path of Daggers',
-    "Winter's Heart",
-    'Crossroads of Twilight',
-    'The Final Empire',
-    'The Well of Ascension',
-    'The Hero of Ages',
-    'The Way of Kings',
-    'Words of Radiance',
-    'Oathbringer',
-    'Rhythm of War'
-]
+
 
 
 //----- clear all clubs/books/reviews -----------------------------------//
@@ -671,6 +651,72 @@ const seedMysteryClub = async () => {
     await club.save();
 }
 
+//----- Create chicago club seeded with books with reviews --------------//
+const seedChicagoClub = async () => {
+    //create reviews
+    for (let i = 0; i < Math.floor(reviewArray.length / chicagoBooks.length) * chicagoBooks.length ; i++) {
+        const review = new Review({
+            rating: reviewArray[i].rating,
+            comments: reviewArray[i].comments,
+            author: reviewArray[i].author,
+            seedTag: 'chicago'
+        })
+        await review.save();
+    }
+
+    //create books
+    for (let i = 0; i < chicagoBooks.length; i++) {
+        const bookTitle = chicagoBooks[i];
+        const response = await axios.get(`http://openlibrary.org/search.json?q=${bookTitle}`);
+        let author = '';
+        let title = '';
+        let coverImageCode = 8406786;
+        let reviews = [];
+        let seedTag = 'chicago'
+        if (response.data.docs[0].author_name) { author = response.data.docs[0].author_name[0] }
+        if (response.data.docs[0].title) { title = response.data.docs[0].title }
+        if (response.data.docs[0].cover_i) { coverImageCode = response.data.docs[0].cover_i }        
+        let imageUrlM = `https://covers.openlibrary.org/b/id/${coverImageCode}-M.jpg`;
+
+        const book = new Book({
+            title,
+            seedTag,
+            author,
+            imageUrlM,
+            reviews
+        });
+        await book.save()
+    }
+
+    //push 3 reviews into each of the 8 book reviews arrays
+    const books = await Book.find({seedTag: 'chicago'});
+    const reviews = await Review.find({seedTag: 'chicago'});
+    let counter = 0
+    for (let i = 0; i < chicagoBooks.length; i++) {
+        for (let j = 0; j < (reviews.length / chicagoBooks.length); j++) {
+            books[i].reviews.push(reviews[counter]);
+            counter++;
+        }
+        await books[i].save();
+    }
+
+    //create club
+    const club = new Club({
+        clubName: 'Windy City Readers',
+        clubImgUrl: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1888&q=80',
+        author: seedAuthor,
+        clubMembers: [],
+        clubBooks: []
+    });
+    await club.save();
+
+    //add books to club
+    for (let i = 0; i < chicagoBooks.length; i++) {
+        club.clubBooks.push(books[i]);
+    }
+    await club.save();
+}
+
 //----- Create bookworm club seeded with books with reviews -------------//
 const seedBookWormClub = async () => {
     //create reviews
@@ -737,72 +783,7 @@ const seedBookWormClub = async () => {
      await club.save();
  }
 
-//----- Create shire club seeded with books with reviews ----------------//
-const seedShireClub = async () => {
-    //create fantasy reviews
-    for (let i = 0; i < Math.floor(reviewArray.length / theShireBooks.length) * theShireBooks.length ; i++) {
-        const review = new Review({
-            rating: reviewArray[i].rating,
-            comments: reviewArray[i].comments,
-            author: reviewArray[i].author,
-            seedTag: 'theShire'
-        })
-        await review.save()
-    }
 
-    //create fantasy books
-
-    for (let i = 0; i < theShireBooks.length; i++) {
-        const bookTitle = theShireBooks[i];
-        const response = await axios.get(`http://openlibrary.org/search.json?q=${bookTitle}`);
-        let author = '';
-        let title = '';
-        let coverImageCode = 8406786;
-        let reviews = [];
-        let seedTag = 'theShire'
-        if (response.data.docs[0].author_name) { author = response.data.docs[0].author_name[0] }
-        if (response.data.docs[0].title) { title = response.data.docs[0].title }
-        if (response.data.docs[0].cover_i) { coverImageCode = response.data.docs[0].cover_i }        
-        let imageUrlM = `https://covers.openlibrary.org/b/id/${coverImageCode}-M.jpg`;
-
-        const book = new Book({
-            title,
-            seedTag,
-            author,
-            imageUrlM,
-            reviews
-        });
-        await book.save()
-    }
-
-    //push reviews into books' reviews arrays
-    const books = await Book.find({seedTag: 'theShire'});
-    const reviews = await Review.find({seedTag: 'theShire'});
-    let counter = 0
-    for (let i = 0; i < theShireBooks.length; i++) {
-        for (let j = 0; j < (reviews.length / theShireBooks.length); j++) {
-            books[i].reviews.push(reviews[counter]);
-            counter++;
-        }
-        await books[i].save();
-    }
-
-    //create 1 club
-    const club = new Club({
-        clubName: 'The Shire',
-        clubImgUrl: 'https://images.unsplash.com/photo-1462759353907-b2ea5ebd72e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80',
-        author: seedAuthor,
-        clubMembers: [],
-        clubBooks: []
-    });
-    await club.save();
-
-    //push books into club books array  
-    for (let i = 0; i < theShireBooks.length; i++) {
-        club.clubBooks.push(books[i]);
-    }
-    await club.save();
-}
 
 const seedDB = async () => {
     console.log('1) DELETING ALL CLUBS/BOOKS/REVIEWS...')
@@ -811,11 +792,11 @@ const seedDB = async () => {
     console.log('2) SEEDING MYSTERY CLUB...')
     await seedMysteryClub();
     console.log('COMPLETE')
-    console.log('3) SEEDING BOOKWORM CLUB...')
-    await seedBookWormClub();
+    console.log('3) SEEDING CHICAGO CLUB...')
+    await seedChicagoClub();
     console.log('COMPLETE')
-    console.log('4) SEEDING SHIRE CLUB...')
-    await seedShireClub();
+    console.log('4) SEEDING BOOKWORM CLUB...')
+    await seedBookWormClub();
     console.log('*************************************')
     console.log('*                                   *')
     console.log('*     DATABASE SEEDING COMPLETE     *')

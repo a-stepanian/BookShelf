@@ -526,12 +526,31 @@ const reviewArray = [
     }
 ]
 
-// chicago books
-const chicagoBooks = [
-    'Devil in the White City',
-    'Anxious People',
-    'The Godfather',
-    'Animal Farm'
+// fantasy books
+const theShireBooks = [
+    'The Hobbit',
+    'Lord of the Rings',
+    'The Two Towers',
+    'Return of the King',
+    'A Game of Thrones',
+    'A Clash of Kings',
+    'A Storm of Swords',
+    'A Feast for Crows',
+    'A Dance With Dragons',
+    'The Dragon Reborn',
+    'The Shadow Rising',
+    'Lord of Chaos',
+    'A Crown of Swords',
+    'The Path of Daggers',
+    "Winter's Heart",
+    'Crossroads of Twilight',
+    'The Final Empire',
+    'The Well of Ascension',
+    'The Hero of Ages',
+    'The Way of Kings',
+    'Words of Radiance',
+    'Oathbringer',
+    'Rhythm of War'
 ]
 
 // classic books
@@ -544,28 +563,29 @@ const classicBooks = [
 ]
 
 
-//----- Create chicago club seeded with books with reviews --------------//
-const seedChicagoClub = async () => {
-    //create reviews
-    for (let i = 0; i < Math.floor(reviewArray.length / chicagoBooks.length) * chicagoBooks.length ; i++) {
+//----- Create shire club seeded with books with reviews ----------------//
+const seedShireClub = async () => {
+    //create fantasy reviews
+    for (let i = 0; i < Math.floor(reviewArray.length / theShireBooks.length) * theShireBooks.length ; i++) {
         const review = new Review({
             rating: reviewArray[i].rating,
             comments: reviewArray[i].comments,
             author: reviewArray[i].author,
-            seedTag: 'chicago'
+            seedTag: 'theShire'
         })
-        await review.save();
+        await review.save()
     }
 
-    //create books
-    for (let i = 0; i < chicagoBooks.length; i++) {
-        const bookTitle = chicagoBooks[i];
+    //create fantasy books
+
+    for (let i = 0; i < theShireBooks.length; i++) {
+        const bookTitle = theShireBooks[i];
         const response = await axios.get(`http://openlibrary.org/search.json?q=${bookTitle}`);
         let author = '';
         let title = '';
         let coverImageCode = 8406786;
         let reviews = [];
-        let seedTag = 'chicago'
+        let seedTag = 'theShire'
         if (response.data.docs[0].author_name) { author = response.data.docs[0].author_name[0] }
         if (response.data.docs[0].title) { title = response.data.docs[0].title }
         if (response.data.docs[0].cover_i) { coverImageCode = response.data.docs[0].cover_i }        
@@ -581,30 +601,30 @@ const seedChicagoClub = async () => {
         await book.save()
     }
 
-    //push 3 reviews into each of the 8 book reviews arrays
-    const books = await Book.find({seedTag: 'chicago'});
-    const reviews = await Review.find({seedTag: 'chicago'});
+    //push reviews into books' reviews arrays
+    const books = await Book.find({seedTag: 'theShire'});
+    const reviews = await Review.find({seedTag: 'theShire'});
     let counter = 0
-    for (let i = 0; i < chicagoBooks.length; i++) {
-        for (let j = 0; j < (reviews.length / chicagoBooks.length); j++) {
+    for (let i = 0; i < theShireBooks.length; i++) {
+        for (let j = 0; j < (reviews.length / theShireBooks.length); j++) {
             books[i].reviews.push(reviews[counter]);
             counter++;
         }
         await books[i].save();
     }
 
-    //create club
+    //create 1 club
     const club = new Club({
-        clubName: 'Windy City Readers',
-        clubImgUrl: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1888&q=80',
+        clubName: 'The Shire',
+        clubImgUrl: 'https://images.unsplash.com/photo-1462759353907-b2ea5ebd72e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80',
         author: seedAuthor,
         clubMembers: [],
         clubBooks: []
     });
     await club.save();
 
-    //add books to club
-    for (let i = 0; i < chicagoBooks.length; i++) {
+    //push books into club books array  
+    for (let i = 0; i < theShireBooks.length; i++) {
         club.clubBooks.push(books[i]);
     }
     await club.save();
@@ -680,7 +700,7 @@ const seedClassicClub = async () => {
 
 const seedDB = async () => {
     console.log('=> SEEDING Chicago CLUB...')
-    await seedChicagoClub();
+    await seedShireClub();
     console.log('COMPLETE')
 
     console.log('=> SEEDING Classic CLUB...')
