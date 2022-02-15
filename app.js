@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
 const express = require('express');                     // Express is the framework of this application
 const mongoose = require('mongoose');                   // Mongoose is for interfacing with mongodb via express / javascript
 const path = require('path');                           // for setting up directory default paths

@@ -3,28 +3,29 @@
     <link rel="stylesheet" href="/stylesheets/clubs/clubIndex.css">
 
 <%- include('../partials/styleToNav') %>
-<h1>Browse BookShelves</h1>
-<section class="allClubs">
-    <% for (let club of clubs) { %>
-        <a class="clubCard" href="clubs/<%=club._id%>">
-            <div class="clubInfoBox">
-                <h2><%=club.clubName%></h2>
-                <div class="statBox">
-                    <h3>Members: <%=club.clubMembers.length%></h3>
-                    <h3>Books: <%=club.clubBooks.length%></h3>
-                </div>
-            </div>
-            <div class="bookBox">
-                    <% for(let book of club.clubBooks) { %>
-                        <div class="bookImgContainer"><img class="bookImg" src="<%=book.imageUrlM%>" alt=""></div>
-                    <% } %>
-            </div>
-        </a>
-    <% } %>
-</section>
-    <a class="newClub" href="/clubs/new">Make a new club</a>
-
+        <h1>Browse BookShelves</h1>
+        <section class="allClubs">
+            <% for (let club of clubs) { %>
+                <a class="clubCard" href="clubs/<%=club._id%>" style="background-image: url(<%=club.clubImgUrl%>);">
+                    <div class="clubInfoBox">
+                        <h2><%=club.clubName%></h2>
+                        <div class="statBox">
+                            <h3>Members: <%=club.clubMembers.length%></h3>
+                            <h3>Books: <%=club.clubBooks.length%></h3>
+                        </div>
+                    </div>
+                    <div class="bookBox">
+                            <% for(let book of club.clubBooks) { %>
+                                <div class="bookImgContainer"><img class="bookImg" src="<%=book.imageUrlM%>" alt=""></div>
+                            <% } %>
+                    </div>
+                </a>
+            <% } %>
+        </section>
+        <a class="newClub" href="/clubs/new">Make a new club</a>
     </main>
+
+    
     <script src="/javascripts/flash.js"></script>
 </body>
 </html>
