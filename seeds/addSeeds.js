@@ -528,9 +528,19 @@ const reviewArray = [
 
 // chicago books
 const chicagoBooks = [
-    'The Hobbit',
-    'anxious people',
-    'The Two Towers'
+    'Devil in the White City',
+    'Anxious People',
+    'The Godfather',
+    'Animal Farm'
+]
+
+// classic books
+const classicBooks = [
+    'The Great Gatsby',
+    'Slaughterhouse-Five',
+    'Catcher In The Rye',
+    'The Man In The Iron Mask',
+    'War and Peace'
 ]
 
 
@@ -603,9 +613,82 @@ const seedChicagoClub = async () => {
 }
 
 
+//----- Create classic club seeded with books with reviews --------------//
+const seedClassicClub = async () => {
+    //create reviews
+    for (let i = 0; i < Math.floor(reviewArray.length / classicBooks.length) * classicBooks.length ; i++) {
+        const review = new Review({
+            rating: reviewArray[i].rating,
+            comments: reviewArray[i].comments,
+            author: reviewArray[i].author,
+            seedTag: 'classic'
+        })
+        await review.save();
+    }
+
+    //create books
+    for (let i = 0; i < classicBooks.length; i++) {
+        const bookTitle = classicBooks[i];
+        const response = await axios.get(`http://openlibrary.org/search.json?q=${bookTitle}`);
+        let author = '';
+        let title = '';
+        let coverImageCode = 8406786;
+        let reviews = [];
+        let seedTag = 'classic'
+        if (response.data.docs[0].author_name) { author = response.data.docs[0].author_name[0] }
+        if (response.data.docs[0].title) { title = response.data.docs[0].title }
+        if (response.data.docs[0].cover_i) { coverImageCode = response.data.docs[0].cover_i }        
+        let imageUrlM = `https://covers.openlibrary.org/b/id/${coverImageCode}-M.jpg`;
+        let imageUrlL = `https://covers.openlibrary.org/b/id/${coverImageCode}-L.jpg`;
+
+        const book = new Book({
+            title,
+            seedTag,
+            author,
+            imageUrlM,
+            imageUrlL,
+            reviews
+        });
+        await book.save()
+    }
+
+    //push 3 reviews into each of the 8 book reviews arrays
+    const books = await Book.find({seedTag: 'classic'});
+    const reviews = await Review.find({seedTag: 'classic'});
+    let counter = 0
+    for (let i = 0; i < classicBooks.length; i++) {
+        for (let j = 0; j < (reviews.length / classicBooks.length); j++) {
+            books[i].reviews.push(reviews[counter]);
+            counter++;
+        }
+        await books[i].save();
+    }
+
+    //create club
+    const club = new Club({
+        clubName: 'Ohio Illiterates',
+        clubImgUrl: 'https://images.unsplash.com/photo-1465929639680-64ee080eb3ed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+        author: seedAuthor,
+        clubMembers: [],
+        clubBooks: []
+    });
+    await club.save();
+
+    //add books to club
+    for (let i = 0; i < classicBooks.length; i++) {
+        club.clubBooks.push(books[i]);
+    }
+    await club.save();
+}
+
+
 const seedDB = async () => {
-    console.log('=> SEEDING CHICAGO CLUB...')
+    console.log('=> SEEDING Chicago CLUB...')
     await seedChicagoClub();
+    console.log('COMPLETE')
+
+    console.log('=> SEEDING Classic CLUB...')
+    await seedClassicClub();
     console.log('COMPLETE')
 
     console.log('*************************************')
