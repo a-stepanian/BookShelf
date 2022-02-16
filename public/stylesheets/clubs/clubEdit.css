@@ -73,6 +73,14 @@ main {
     border: 3px solid #eb5e28;
 }
 
+.form p {
+    color: #ccc5b9;
+}
+
+.form p a {
+    color: #eb5e28;
+}
+
 .buttons {
     margin: 20px 0;
     display: flex;
