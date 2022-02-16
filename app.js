@@ -19,17 +19,29 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/userModel');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const MongoStore = require('connect-mongo');
 
-const app = express();
+
+//----- Connect to Production Database --------------------------------//
+// Comment out for development
+// const dbUrl = process.env.DB_URL;
+
+//----- Connect to Local Database -------------------------------------//
+// Comment out for production
+const dbUrl = 'mongodb://localhost:27017/book-club';
 
 
-//----- Connect to Database --------------------------------------------//
-mongoose.connect('mongodb://localhost:27017/book-club')
+
+//----- Connect to Database -------------------------------------------//
+mongoose.connect(dbUrl)
     .then(() => {
         console.log('Connected to DB')
     }).catch(err => {
         console.log('DB CONNECTION ERROR', err)
     });
+
+
+const app = express();
 
     
 //----- For including partials -----------------------------------------//
@@ -60,15 +72,29 @@ app.use(mongoSanitize({
 }))
 
 
+//----- Set up mongo store for production ------------------------------//
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: 'thisisahorriblesecretandneedstobebetter!'
+    }
+});
+
+store.on('error', function(e){
+    console.log('SESSION STORE ERROR', e)
+})
+
 //----- Set up session (for flash/auth) --------------------------------//
 const sessionConfig = {
+    store,
     name: 'thisIsSessionName',
     secret: 'thisisahorriblesecretandneedstobebetter!',
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        // secure: true,
+        // secure: true,       // USE FOR PRODUCTION, COMMENT OUT FOR DEVELOPMENT
         expires: Date.now() + 1000*60*60*24*7,
         maxAge: 1000*60*60*24*7
     }

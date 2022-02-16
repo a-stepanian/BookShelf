@@ -22,6 +22,14 @@ module.exports.isAuthor = async (req, res, next) => {
     next();
 }
 
+module.exports.validateUrl = (req, res, next) => {
+    const { clubImgUrl } = req.body;
+    if (clubImgUrl.includes('https://images.unsplash.com/')) {
+        next();
+    } else {
+        throw new ExpressError('Not a valid image, go to unsplash.com to choose an image', 403)
+    }
+}
 module.exports.validateClub = (req, res, next) => {
     const { error } = clubSchema.validate(req.body);
     if (error) {

@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
-const { isLoggedIn, isAuthor, validateClub } = require('../middleware.js')
+const { isLoggedIn, isAuthor, validateClub, validateUrl } = require('../middleware.js')
 const clubs = require('../controllers/clubControllers');
 
 
 router.route('/')
     .get(catchAsync(clubs.index))
     .post(
-        isLoggedIn, 
+        isLoggedIn,
+        validateClub, 
         catchAsync(clubs.new));
 
 
@@ -21,7 +22,8 @@ router.route('/:id')
     .get(catchAsync(clubs.show))
     .put(
         isLoggedIn, 
-        isAuthor, 
+        isAuthor,
+        validateUrl,
         validateClub, 
         catchAsync(clubs.edit))
     .delete(
