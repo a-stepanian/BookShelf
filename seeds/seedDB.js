@@ -12,14 +12,14 @@ mongoose.connect('mongodb://localhost:27017/book-club')
 });
 
 //Seed Authors
-const seedAuthor = '6205a9c5f33d237129fa70ce'; //club author
+const seedAuthor = '620d742fab180b5b2a2e2d58'; //club author
 const reviewAuthors = [
-    '6205a9c5f33d237129fa70ce',
-    '62046c0f7e2098a3586f88c0',
-    '6206b993020d1243ee78dd7e',
-    '6206b9a8020d1243ee78dd87',
-    '62043528dc4268fdecd75438',
-    '6206ba69020d1243ee78dd90'
+    '620d7408ab180b5b2a2e2d4a',
+    '620d7423ab180b5b2a2e2d51',
+    '620d743bab180b5b2a2e2d5f',
+    '620d744bab180b5b2a2e2d66',
+    '620d747aab180b5b2a2e2d6d',
+    '620d749aab180b5b2a2e2d74'
 ];
 
 //100 reviews
@@ -539,7 +539,6 @@ const mysteryBooks = [
     'the murder of roger ackroyd',
     'the adventures of sherlock holmes',
     'the murder on the links',
-    'and then there were none',
     'the mystery of the blue train',
     'the a.b.c. murders',
     'peril at end house',
