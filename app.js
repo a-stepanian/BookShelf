@@ -22,13 +22,9 @@ const helmet = require('helmet');
 const MongoStore = require('connect-mongo');
 
 
-//----- Connect to Production Database --------------------------------//
-// Comment out for development
-// const dbUrl = process.env.DB_URL;
 
-//----- Connect to Local Database -------------------------------------//
-// Comment out for production
-const dbUrl = 'mongodb://localhost:27017/book-club';
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/book-club';
 
 
 
@@ -72,12 +68,15 @@ app.use(mongoSanitize({
 }))
 
 
+const secret = process.env.SECRET || 'thisisahorriblesecretandneedstobebetter!'
+
+
 //----- Set up mongo store for production ------------------------------//
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: 'thisisahorriblesecretandneedstobebetter!'
+        secret
     }
 });
 
@@ -89,7 +88,7 @@ store.on('error', function(e){
 const sessionConfig = {
     store,
     name: 'thisIsSessionName',
-    secret: 'thisisahorriblesecretandneedstobebetter!',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
