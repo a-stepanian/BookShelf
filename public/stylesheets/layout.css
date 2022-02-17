@@ -7,7 +7,8 @@
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     background-color: #ccc5b9;
     color: black;
     display: flex;
@@ -157,6 +158,9 @@ footer {
 
 /* Bookshelf large screen media query */
 @media (min-width: 768px) {
+    body {
+        height: 100vh;
+    }
     footer {
         flex: 0 0 250px;
         border-top: none;
