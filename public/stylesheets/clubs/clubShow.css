@@ -1,6 +1,8 @@
 body {
     background-position: center;
     background-size: cover;
+    height: 100vh;
+    min-height: -webkit-fill-available;
 }
 
 .breadcrumb {
@@ -22,7 +24,9 @@ main {
     flex-direction: column;
     justify-content: flex-start;
     background-position: center;
-    background-size: cover;}
+    background-size: cover;
+    height: 100%;
+}
 
 .infoBox {
     margin-top: 10px;
