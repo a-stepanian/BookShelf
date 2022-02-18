@@ -1,9 +1,193 @@
+/*----------------------------------------------------------*/
+/*----- Global / body styles -------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-position: center;
-    background-size: cover;
     min-height: 100vh;
     min-height: -webkit-fill-available;
+    background-position: center;
+    background-size: cover;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
 }
+
+
+
+/*----------------------------------------------------------*/
+/*----- Flash Messages -------------------------------------*/
+.flash {
+    z-index: 99;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 900;
+    color: black;
+    position: absolute;
+    background-color: #eb5e28;
+}
+
+.close {
+    border: 3px solid black;
+    background-color: #ccc5b9;
+    padding: 20px 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.close:hover {
+    text-decoration: underline;
+    transform: translate(-2px, -2px);
+    box-shadow: 3px 3px black;
+}
+
+.dismiss {
+    display: none;
+}
+
+
+/*----------------------------------------------------------*/
+/*----- Navbar ---------------------------------------------*/
+nav {
+    flex: 0 0 40px;
+    width: 100%;
+    background-color: #eb5e28;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin-left: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.links {
+    display: flex;
+}
+
+.links a {
+    margin-right: 10px;
+    border-radius: 3px;
+    border: 3px solid #252422;
+    color: #252422;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.3em;
+    width: 80px;
+    font-size: 1em;
+    letter-spacing: -2px;
+    font-weight: 900;
+    background-color: #ccc5b9;
+}
+
+.links a:hover {
+    text-decoration: underline;
+    transform: translate(-2px, -2px);
+    box-shadow: 3px 3px black;
+}
+
+@media (min-width: 400px) {
+    .links a {
+        width: 120px;
+        font-size: 1.2em;
+        letter-spacing: -1.5px;
+    }
+}
+
+
+/*----------------------------------------------------------*/
+/*----- Main Content Box (between navbar and bookshelf) ----*/
+main {
+    width: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*----------------------------------------------------------*/
+/*----- Bookshelf feature ----------------------------------*/
+footer {
+    border-top: 3px solid black;
+    background-color: rgb(255, 165, 130);
+    width: 100%;
+    height: 200px;
+    justify-self: flex-end;               /*150px high normal box*/
+    display: flex;
+}
+
+.bookshelf {
+    width: 100%;
+    height: 100%;                   /*150px high normal, same as footer*/
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+}
+
+.bookContainer {
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;                  /*100px high normal*/
+    transition: 0.2s;  
+}
+
+.bookContainer:hover {
+    height: 170px;
+    z-index: 1;
+}
+
+.book {
+    background-color: #fffcf2;
+    border: 1px solid #fffcf2;
+    height: 100%;                   /*100px high normal*/
+    border-radius: 3px;             /*130 on hover*/
+    outline: 3px solid #252422;
+}
+
+/* Bookshelf large screen media query */
+@media (min-width: 768px) {
+    body {
+        height: 100vh;
+    }
+    footer {
+        flex: 0 0 250px;
+        border-top: none;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .bookshelf {
+        align-items: flex-end;
+    }
+
+    .bookContainer {
+        width: 80px;
+        height: 200px;
+    }
+
+
+    .bookContainer:hover {
+        width: 150px;
+        height: 230px;
+    }
+}
+
+
 html {
     height: -webkit-fill-available;
 }
@@ -23,13 +207,7 @@ html {
     font-weight: 900;
 }
 
-main {
-    flex-direction: column;
-    justify-content: flex-start;
-    background-position: center;
-    background-size: cover;
-    height: 100%;
-}
+
 
 .infoBox {
     margin-top: 10px;
@@ -41,15 +219,16 @@ main {
     text-align: center;
     background-color: rgba(255, 255, 255, 0.5);
 }
+main p {
+    font-size: 1em;
+}
 
 main h1 a {
     text-decoration: none;
     color: #eb5e28;
 }
 
-main p {
-    font-size: 1em;
-}
+
 
 main .button, main form button {
     margin-top: 10px;
