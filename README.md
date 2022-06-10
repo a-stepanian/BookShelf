@@ -12,3 +12,5 @@ Added clubs model after making the books model and reviews model.  Didn't think 
 To have a user join a club I had to make a new put route and console.log was necessary to troubleshoot through this.  Needed to get the username from the session in order to look up the user and the push the user into the clubMembers array.
 
 wrote middleware to validate user input.
+
+100vh doesn't work well with mobile safari, need to use webkit fill available because of the dynamic menu/search bars.
