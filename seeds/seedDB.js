@@ -1,11 +1,18 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const mongoose = require("mongoose");
 const Club = require("../models/clubModel");
 const Book = require("../models/bookModel");
 const Review = require("../models/reviewModel");
 const axios = require("axios");
 
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/book-club";
+
+//----- Connect to Database -------------------------------------------//
 mongoose
-  .connect("mongodb://localhost:27017/book-club")
+  .connect(dbUrl)
   .then(() => {
     console.log("Connected to DB");
   })
@@ -14,14 +21,14 @@ mongoose
   });
 
 //Seed Authors
-const seedAuthor = "620d742fab180b5b2a2e2d58"; //club author
+const seedAuthor = "620d8d8d195e527673b77388"; //club author
 const reviewAuthors = [
-  "620d7408ab180b5b2a2e2d4a",
-  "620d7423ab180b5b2a2e2d51",
-  "620d743bab180b5b2a2e2d5f",
-  "620d744bab180b5b2a2e2d66",
-  "620d747aab180b5b2a2e2d6d",
-  "620d749aab180b5b2a2e2d74",
+  "6293d232dc57f58a0c5a4184",
+  "6293d1c0dc57f58a0c5a4126",
+  "6256e9d93a740823fb33e2e3",
+  "6286ef31280d02bdad99df1a",
+  "6293d17cdc57f58a0c5a40ff",
+  "6293d26ddc57f58a0c5a41ac",
 ];
 
 //100 reviews
